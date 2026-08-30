@@ -117,7 +117,7 @@ export const BottleSvg: React.FC<BottleSvgProps> = ({
 
         {/* Ruler / Scale Markings on the Left */}
         <g className="text-[9px] font-mono fill-stone-400">
-          <line x1="68" y1="80" x2="68" y2="380" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="2 2" />
+          <line x1="68" y1="80" x2="68" y2="380" stroke="#334155" strokeWidth="1.2" strokeDasharray="2 2" />
           {[
             { cm: 22, y: 95 },
             { cm: 18, y: 145 },
@@ -128,21 +128,21 @@ export const BottleSvg: React.FC<BottleSvgProps> = ({
             { cm: 0, y: 375 },
           ].map((mark) => (
             <g key={mark.cm}>
-              <line x1="62" y1={mark.y} x2="72" y2={mark.y} stroke="#94a3b8" strokeWidth="1.2" />
-              <text x="56" y={mark.y + 3} textAnchor="end">
+              <line x1="62" y1={mark.y} x2="72" y2={mark.y} stroke="#475569" strokeWidth="1" />
+              <text x="56" y={mark.y + 3} textAnchor="end" className="fill-stone-400 font-sans text-[10px]">
                 {mark.cm}
               </text>
             </g>
           ))}
-          <text x="45" y="70" textAnchor="end" className="font-semibold fill-stone-500 text-[10px]">
+          <text x="48" y="70" textAnchor="end" className="font-semibold fill-stone-400 text-[10px]">
             cm
           </text>
         </g>
 
         {/* Plastic Filling (Inside Bottle Clip) */}
         <g clipPath="url(#bottleInsideClip)">
-          {/* Base Empty Background */}
-          <rect x="85" y="50" width="110" height="340" fill="#f1f5f9" opacity="0.6" />
+          {/* Base Empty Background (Dark tinted translucent) */}
+          <rect x="85" y="50" width="110" height="340" fill="#0f172a" opacity="0.5" />
 
           {/* Filled Plastic Layers */}
           {materialSlices.map((slice) => (
@@ -188,7 +188,7 @@ export const BottleSvg: React.FC<BottleSvgProps> = ({
                   cy={360 - (i * 28) % fillHeightPixels}
                   r={3 + (i % 3)}
                   fill="#000000"
-                  opacity={0.15}
+                  opacity={0.25}
                 />
               ))}
             </g>
@@ -250,16 +250,16 @@ export const BottleSvg: React.FC<BottleSvgProps> = ({
         {/* Digital Tag overlay at bottle base */}
         <g transform="translate(90, 398)">
           <rect x="0" y="0" width="100" height="20" rx="4" fill="#0f172a" stroke="#334155" strokeWidth="1" />
-          <text x="50" y="14" textAnchor="middle" fill="#38bdf8" className="text-[10px] font-mono font-bold">
+          <text x="50" y="14" textAnchor="middle" fill="#38bdf8" className="text-[10px] font-sans font-semibold">
             {bottle.nominalVolume} ml | {totalMass.toFixed(1)} g
           </text>
         </g>
       </svg>
 
       {/* Real-time packing density indicator floating badge */}
-      <div className="absolute top-2 right-0 bg-stone-900/90 backdrop-blur-xs border border-stone-700 px-2.5 py-1 rounded text-right shadow-sm">
-        <div className="text-[10px] font-mono text-stone-400">Densitas Realtime</div>
-        <div className="text-sm font-mono font-bold text-emerald-400">
+      <div className="absolute top-2 right-1 bg-[#11141c]/90 backdrop-blur-md border border-[#232936] px-2.5 py-1 rounded-lg text-right shadow-md">
+        <div className="text-[10px] font-sans text-stone-400">Densitas Realtime</div>
+        <div className="text-sm font-sans font-bold text-emerald-400">
           {currentDensity.toFixed(4)} <span className="text-[10px] text-stone-300 font-normal">g/cm³</span>
         </div>
       </div>

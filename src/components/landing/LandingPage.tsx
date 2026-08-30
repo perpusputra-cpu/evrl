@@ -6,11 +6,9 @@ import {
   Bot,
   Award,
   ShieldCheck,
-  Sparkles,
   ArrowRight,
   CheckCircle2,
   Lock,
-  Layers,
   Scale,
   RotateCcw,
 } from 'lucide-react';
@@ -63,49 +61,49 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   ];
 
   return (
-    <div className="space-y-12 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="space-y-12 sm:space-y-16 py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* HERO SECTION */}
-      <section className="relative pt-4 pb-8 text-center lg:text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-7 space-y-6">
-          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#121212] border border-[#262626] text-emerald-300 text-xs font-mono">
+      <section className="relative pt-2 pb-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#11141c] border border-[#232936] text-emerald-300 text-xs font-sans">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Ecobrick Virtual Research Laboratory (EVRL) v2.4</span>
+            <span className="font-medium">Ecobrick Virtual Research Laboratory (EVRL) v2.4</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.12]">
             Riset Material. <br />
             Kuasai Proses. <br />
             <span className="text-emerald-400">Pertahankan Hasil di LKTI.</span>
           </h1>
 
-          <p className="text-stone-300 font-sans text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Laboratorium virtual berbasis sains polimer untuk simulasi formulasi ecobrick presisi, manajemen naskah Karya Tulis Ilmiah (KTI), analitik deterministik GEA, dan uji pertahanan menghadapi dewan juri ahli.
+          <p className="text-stone-300 font-sans text-sm sm:text-base leading-relaxed max-w-2xl">
+            Laboratorium virtual berbasis sains polimer untuk simulasi formulasi ecobrick presisi, manajemen naskah Karya Tulis Ilmiah (KTI) 5 Bab resmi, analitik deterministik GEA, dan uji pertahanan menghadapi dewan juri ahli.
           </p>
 
           {/* CTA Group */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
             <button
               id="hero-enter-lab-btn"
               onClick={onEnterLab}
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-black rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-950/40 cursor-pointer"
+              className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-stone-950 rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-950/40 cursor-pointer"
             >
-              <FlaskConical className="w-4 h-4 text-black" />
+              <FlaskConical className="w-4 h-4 text-stone-950" />
               <span>Masuk ke Virtual Lab 2D</span>
-              <ArrowRight className="w-4 h-4 text-black" />
+              <ArrowRight className="w-4 h-4 text-stone-950" />
             </button>
 
             <button
               id="hero-load-sample-btn"
               onClick={onLoadSample}
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 px-5 py-3.5 bg-[#141414] hover:bg-[#1C1C1C] border border-[#2A2A2A] text-stone-200 rounded-xl text-xs font-semibold transition shadow-xs cursor-pointer"
+              className="flex items-center justify-center space-x-2 px-5 py-3.5 bg-[#141822] hover:bg-[#1c2230] border border-[#283244] text-stone-200 rounded-xl text-xs font-semibold transition shadow-xs cursor-pointer"
             >
               <RotateCcw className="w-4 h-4 text-emerald-400" />
-              <span>Muat Contoh Data KTI & Uji Coba</span>
+              <span>Muat Contoh Data KTI</span>
             </button>
           </div>
 
           {/* Security & Isolation guarantee */}
-          <div className="flex items-center justify-center lg:justify-start space-x-4 text-xs text-stone-400 font-mono pt-2">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-stone-400 font-sans pt-2">
             <div className="flex items-center space-x-1.5">
               <Lock className="w-3.5 h-3.5 text-emerald-400" />
               <span>Tanpa Akun / Login</span>
@@ -116,20 +114,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
             <div className="flex items-center space-x-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Standar GEA 0.33+</span>
+              <span>Standar GEA 0.33+ g/cm³</span>
             </div>
           </div>
         </div>
 
         {/* Live Interactive Teaser Card - Bento Hero Block */}
-        <div className="lg:col-span-5 bg-[#0E0E0E] border border-[#222222] rounded-2xl p-6 shadow-xl space-y-4">
-          <div className="flex items-center justify-between border-b border-[#1F1F1F] pb-3">
-            <span className="text-xs font-mono font-bold text-stone-300 uppercase flex items-center space-x-1.5">
+        <div className="lg:col-span-5 bg-[#0f1219] border border-[#232936] rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+          <div className="flex items-center justify-between border-b border-[#1f242d] pb-3">
+            <span className="text-xs font-sans font-semibold text-stone-200 uppercase tracking-wider flex items-center space-x-1.5">
               <Scale className="w-4 h-4 text-emerald-400" />
-              <span>Simulasi Fisik 2D Interaktif</span>
+              <span>Simulasi Fisik 2D</span>
             </span>
             <span
-              className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold ${
+              className={`text-[11px] font-sans px-2.5 py-0.5 rounded-md font-semibold ${
                 teaserDensity >= 0.37
                   ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800'
                   : teaserDensity >= 0.33
@@ -142,7 +140,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Interactive Bottle Graphic */}
-          <div className="py-2 flex justify-center bg-[#070707] rounded-xl border border-[#1A1A1A]">
+          <div className="py-3 flex justify-center bg-[#07090e] rounded-xl border border-[#1b202c]">
             <BottleSvg
               bottle={teaserBottle}
               materials={teaserMaterials}
@@ -153,10 +151,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Slider */}
-          <div className="space-y-1.5 pt-2">
+          <div className="space-y-2 pt-1">
             <div className="flex justify-between text-xs font-sans">
-              <span className="text-stone-400">Geser Massa Plastik:</span>
-              <span className="font-mono font-bold text-emerald-400">{teaserMass} gram</span>
+              <span className="text-stone-400 font-medium">Massa Plastik Formula:</span>
+              <span className="font-sans font-bold text-emerald-400">{teaserMass} gram</span>
             </div>
             <input
               type="range"
@@ -165,17 +163,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               step="10"
               value={teaserMass}
               onChange={(e) => setTeaserMass(Number(e.target.value))}
-              className="w-full h-1.5 bg-[#222222] rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              className="w-full h-2 bg-[#1b202c] rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
-            <div className="flex justify-between text-[10px] text-stone-500 font-mono">
+            <div className="flex justify-between text-[11px] text-stone-400 font-sans">
               <span>140g (0.23 g/cm³)</span>
-              <span>200g (Min 0.33)</span>
+              <span className="text-stone-300 font-medium">200g (Min 0.33)</span>
               <span>280g (0.46 g/cm³)</span>
             </div>
           </div>
 
-          <div className="bg-[#141414] rounded-xl p-3 text-xs font-mono flex items-center justify-between border border-[#222222]">
-            <span className="text-stone-400">Densitas Formula:</span>
+          <div className="bg-[#141822] rounded-xl p-3 text-xs font-sans flex items-center justify-between border border-[#232936]">
+            <span className="text-stone-400">Hasil Densitas Formula:</span>
             <span className="text-sm font-bold text-emerald-300">
               {teaserDensity.toFixed(4)} g/cm³
             </span>
@@ -186,88 +184,112 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* CORE 4 PILLARS SECTION - Bento Grid */}
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono uppercase font-bold text-emerald-400 tracking-wider">
+          <span className="text-xs font-sans uppercase font-bold text-emerald-400 tracking-wider">
             Arsitektur Lab Virtual
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
             4 Pilar Ilmiah untuk Keunggulan LKTI
           </h2>
-          <p className="text-xs sm:text-sm text-stone-400">
-            Didesain khusus untuk peneliti muda, mahasiswa, dan peserta kompetisi karya tulis ilmiah.
+          <p className="text-xs sm:text-sm text-stone-400 font-sans">
+            Didesain khusus untuk peneliti muda, siswa, dan peserta kompetisi karya tulis ilmiah.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {/* Pillar 1 */}
           <div
             onClick={() => onOpenTab('lab')}
-            className="bg-[#0E0E0E] border border-[#222222] hover:border-emerald-500/50 hover:bg-[#121212] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group"
+            className="bg-[#0f1219] border border-[#232936] hover:border-emerald-500/50 hover:bg-[#141822] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group flex flex-col justify-between"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#2A2A2A] text-emerald-400 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-black transition">
-              <FlaskConical className="w-5 h-5" />
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#181d28] border border-[#283244] text-emerald-400 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-stone-950 transition">
+                <FlaskConical className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-white">
+                1. Virtual Lab 2D
+              </h3>
+              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+                Formulasi fraksi polimer (BOPP, LDPE, HDPE, PP), simulasi penataan lapisan, dan pemadatan bertingkat dengan kalkulasi massa dan volume botol presisi.
+              </p>
             </div>
-            <h3 className="font-serif font-bold text-base text-white">
-              1. Virtual Lab 2D
-            </h3>
-            <p className="text-xs text-stone-400 font-sans leading-relaxed">
-              Formulasi fraksi polimer (BOPP, LDPE, HDPE, PP), simulasi penataan lapisan, dan pemadatan bertingkat dengan kalkulasi massa dan volume botol presisi.
-            </p>
+            <span className="text-xs text-emerald-400 font-medium inline-flex items-center space-x-1 pt-1">
+              <span>Buka Lab</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </div>
 
           {/* Pillar 2 */}
           <div
             onClick={() => onOpenTab('research')}
-            className="bg-[#0E0E0E] border border-[#222222] hover:border-teal-500/50 hover:bg-[#121212] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group"
+            className="bg-[#0f1219] border border-[#232936] hover:border-teal-500/50 hover:bg-[#141822] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group flex flex-col justify-between"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#2A2A2A] text-teal-400 flex items-center justify-center group-hover:bg-teal-500 group-hover:text-black transition">
-              <BookOpen className="w-5 h-5" />
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#181d28] border border-[#283244] text-teal-400 flex items-center justify-center group-hover:bg-teal-500 group-hover:text-stone-950 transition">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-white">
+                2. KTI & Pustaka Sitasi
+              </h3>
+              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+                Dokumentasi naskah KTI 5 Bab lengkap resmi MA Plus Abu Hurairah, matriks variabel, log observasi, dan perpustakaan sitasi formal 24 referensi.
+              </p>
             </div>
-            <h3 className="font-serif font-bold text-base text-white">
-              2. KTI & Pustaka Sitasi
-            </h3>
-            <p className="text-xs text-stone-400 font-sans leading-relaxed">
-              Dokumentasi naskah KTI 5 Bab lengkap, matriks hipotesis variabel, log observasi fisik, dan perpustakaan sitasi formal [REF-001].
-            </p>
+            <span className="text-xs text-teal-400 font-medium inline-flex items-center space-x-1 pt-1">
+              <span>Buka Naskah</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </div>
 
           {/* Pillar 3 */}
           <div
             onClick={() => onOpenTab('ai')}
-            className="bg-[#0E0E0E] border border-[#222222] hover:border-sky-500/50 hover:bg-[#121212] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group"
+            className="bg-[#0f1219] border border-[#232936] hover:border-sky-500/50 hover:bg-[#141822] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group flex flex-col justify-between"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#2A2A2A] text-sky-400 flex items-center justify-center group-hover:bg-sky-500 group-hover:text-black transition">
-              <Bot className="w-5 h-5" />
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#181d28] border border-[#283244] text-sky-400 flex items-center justify-center group-hover:bg-sky-500 group-hover:text-stone-950 transition">
+                <Bot className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-white">
+                3. LAB AI Principal Scientist
+              </h3>
+              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+                Asisten riset cerdas yang grounded pada eksperimen laboratorium nyata, naskah KTI, serta literatur polimer terakreditasi tanpa fabrikasi data.
+              </p>
             </div>
-            <h3 className="font-serif font-bold text-base text-white">
-              3. LAB AI Principal Scientist
-            </h3>
-            <p className="text-xs text-stone-400 font-sans leading-relaxed">
-              Asisten riset cerdas yang grounded pada eksperimen laboratorium nyata, naskah KTI, serta literatur polimer terakreditasi tanpa fabrikasi data.
-            </p>
+            <span className="text-xs text-sky-400 font-medium inline-flex items-center space-x-1 pt-1">
+              <span>Konsultasi AI</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </div>
 
           {/* Pillar 4 */}
           <div
             onClick={() => onOpenTab('jury')}
-            className="bg-[#0E0E0E] border border-[#222222] hover:border-amber-500/50 hover:bg-[#121212] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group"
+            className="bg-[#0f1219] border border-[#232936] hover:border-amber-500/50 hover:bg-[#141822] rounded-2xl p-5 shadow-xs transition cursor-pointer space-y-3 group flex flex-col justify-between"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#181818] border border-[#2A2A2A] text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-black transition">
-              <Award className="w-5 h-5" />
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-[#181d28] border border-[#283244] text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-stone-950 transition">
+                <Award className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif font-bold text-base text-white">
+                4. Simulator Dewan Juri LKTI
+              </h3>
+              <p className="text-xs text-stone-400 font-sans leading-relaxed">
+                Simulasi sidang presentasi dengan 4 karakter dewan juri ahli (Metodologi, Substansi, Implementasi, Skeptis) dan rubrik skor nasional.
+              </p>
             </div>
-            <h3 className="font-serif font-bold text-base text-white">
-              4. Simulator Dewan Juri LKTI
-            </h3>
-            <p className="text-xs text-stone-400 font-sans leading-relaxed">
-              Simulasi sidang presentasi dengan 4 karakter dewan juri ahli (Metodologi, Substansi, Implementasi, Skeptis) dan rubrik skor nasional.
-            </p>
+            <span className="text-xs text-amber-400 font-medium inline-flex items-center space-x-1 pt-1">
+              <span>Uji Sidang</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </div>
         </div>
       </section>
 
       {/* 5-STEP SCIENTIFIC WORKFLOW - Bento Container */}
-      <section className="bg-[#0A0A0A] text-stone-100 rounded-2xl p-6 sm:p-8 border border-[#202020] space-y-6">
+      <section className="bg-[#0b0e14] text-stone-100 rounded-2xl p-6 sm:p-8 border border-[#1f242d] space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono uppercase font-bold text-emerald-400 tracking-wider">
+          <span className="text-xs font-sans uppercase font-bold text-emerald-400 tracking-wider">
             Alur Kerja Riset
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
@@ -275,7 +297,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
             {
               step: '01',
@@ -303,8 +325,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               desc: 'Uji ketahanan argumen menghadapi pertanyaan kritis dewan juri.',
             },
           ].map((item) => (
-            <div key={item.step} className="p-4 bg-[#121212] border border-[#222222] rounded-xl space-y-2">
-              <span className="font-mono font-bold text-xs text-emerald-400">Tahap {item.step}</span>
+            <div key={item.step} className="p-4 bg-[#121620] border border-[#232936] rounded-xl space-y-2">
+              <span className="font-sans font-bold text-xs text-emerald-400">Tahap {item.step}</span>
               <h4 className="font-serif font-bold text-sm text-stone-100">{item.title}</h4>
               <p className="text-xs text-stone-400 font-sans leading-relaxed">{item.desc}</p>
             </div>
@@ -313,17 +335,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* FOOTER CALL TO ACTION - Bento Glow */}
-      <section className="bg-gradient-to-br from-[#064e3b]/30 via-[#0A0A0A] to-[#022c22]/40 border border-emerald-800/40 rounded-2xl p-8 text-center text-emerald-50 space-y-4">
+      <section className="bg-gradient-to-br from-[#064e3b]/30 via-[#0b0e14] to-[#022c22]/40 border border-emerald-800/40 rounded-2xl p-6 sm:p-8 text-center text-emerald-50 space-y-4">
         <h3 className="font-serif font-bold text-xl sm:text-2xl text-white">
           Siap Memulai Eksperimen Ecobrick Anda?
         </h3>
         <p className="text-xs sm:text-sm text-emerald-200 max-w-xl mx-auto font-sans leading-relaxed">
-          Gunakan sampel data penelitian kami atau mulai formulasi eksperimen dari awal secara privat.
+          Gunakan sampel data penelitian naskah resmi atau mulai formulasi eksperimen baru dari awal secara privat.
         </p>
         <div className="pt-2 flex justify-center space-x-3">
           <button
             onClick={onEnterLab}
-            className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-950/50 cursor-pointer"
+            className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-950/50 cursor-pointer"
           >
             Buka Virtual Lab Sekarang
           </button>
@@ -332,3 +354,4 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     </div>
   );
 };
+
