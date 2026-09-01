@@ -1,12 +1,14 @@
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express, { NextFunction, Request, Response } from 'express';
+import fs from 'fs';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import {
   evaluateJuryAnswer,
   generateFinalJuryReport,
   generateJuryQuestion,
+  getAiProviderInfo,
   handleLabAiQuery,
 } from './server/aiProvider';
 import {
@@ -96,6 +98,13 @@ app.get('/api/health', (req, res) => {
     status: 'ok',
     service: 'Ecobrick Virtual Research Laboratory API',
     time: new Date().toISOString(),
+  });
+});
+
+app.get('/api/ai/provider-status', (req, res) => {
+  res.json({
+    success: true,
+    ...getAiProviderInfo(),
   });
 });
 
@@ -280,7 +289,7 @@ app.delete('/api/research/notes/:id', requireWorkspace, (req, res) => {
   res.json({ success: true });
 });
 
-// LAB AI Chat
+// LAB AI Chat (Standard JSON Endpoint)
 app.post('/api/lab-ai', requireWorkspace, async (req, res) => {
   const state = (req as any).workspaceState as WorkspaceState;
   const { message, conversationId, activeExpId } = req.body;
@@ -337,6 +346,33 @@ app.post('/api/lab-ai', requireWorkspace, async (req, res) => {
     res.status(500).json({
       error: 'LAB AI sedang tidak tersedia. Data eksperimen Anda tetap aman.',
     });
+  }
+});
+
+// Static Developer-Managed Research Corpus Endpoint (Read-Only)
+app.get('/api/research/corpus', (req, res) => {
+  try {
+    const ktiPath = path.join(process.cwd(), 'research', 'kti', 'kti-final.json');
+    const citPath = path.join(process.cwd(), 'research', 'citations', 'citations.json');
+    const methPath = path.join(process.cwd(), 'research', 'methodology', 'methodology.json');
+    const rubPath = path.join(process.cwd(), 'research', 'jury', 'brida-rubric.json');
+
+    const kti = fs.existsSync(ktiPath) ? JSON.parse(fs.readFileSync(ktiPath, 'utf-8')) : null;
+    const citations = fs.existsSync(citPath) ? JSON.parse(fs.readFileSync(citPath, 'utf-8')) : [];
+    const methodology = fs.existsSync(methPath) ? JSON.parse(fs.readFileSync(methPath, 'utf-8')) : null;
+    const rubric = fs.existsSync(rubPath) ? JSON.parse(fs.readFileSync(rubPath, 'utf-8')) : null;
+
+    res.json({
+      success: true,
+      corpus: {
+        kti,
+        citations,
+        methodology,
+        rubric,
+      },
+    });
+  } catch (e) {
+    res.status(500).json({ error: 'Gagal memuat korpus riset statis.' });
   }
 });
 

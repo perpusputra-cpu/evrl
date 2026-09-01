@@ -269,7 +269,7 @@ export const ExperimentTimeline: React.FC<ExperimentTimelineProps> = ({
             {/* Delta Stat Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div className="p-3.5 bg-[#141414] rounded-xl border border-[#242424]">
-                <span className="text-[10px] font-mono text-stone-400 uppercase">Delta Massa (\Delta m)</span>
+                <span className="text-[10px] font-mono text-stone-400 uppercase">Delta Massa (Δm)</span>
                 <div className="text-base sm:text-lg font-mono font-bold text-white mt-0.5">
                   {comparisonDelta.deltaMass > 0 ? `+${comparisonDelta.deltaMass}` : comparisonDelta.deltaMass} g
                 </div>
@@ -279,7 +279,7 @@ export const ExperimentTimeline: React.FC<ExperimentTimelineProps> = ({
               </div>
 
               <div className="p-3.5 bg-[#141414] rounded-xl border border-[#242424]">
-                <span className="text-[10px] font-mono text-stone-400 uppercase">Delta Densitas (\Delta \rho)</span>
+                <span className="text-[10px] font-mono text-stone-400 uppercase">Delta Densitas (Δρ)</span>
                 <div className="text-base sm:text-lg font-mono font-bold text-white mt-0.5">
                   {comparisonDelta.deltaDensity > 0 ? `+${comparisonDelta.deltaDensity}` : comparisonDelta.deltaDensity} g/cm³
                 </div>

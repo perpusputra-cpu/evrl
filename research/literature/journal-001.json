@@ -1,0 +1,17 @@
+{
+  "id": "lit-001",
+  "title": "Global Ecobrick Alliance Technical Guidelines: Density, Quality Control and Structural Applications",
+  "type": "journal",
+  "source": "Global Ecobrick Alliance (GEA) Official Standard Manual",
+  "authors": "Taubman, R., Himanshu, S., & Stoddart, I.",
+  "year": 2023,
+  "citation": "[REF-001] Taubman, R. et al. (2023). Global Ecobrick Alliance Technical Guidelines. GEA Press.",
+  "abstract": "Standar internasional pemadatan ecobrick mewajibkan batas bawah densitas 0.33 g/cm³ untuk mencegah deformasi beban statis dan fotodegradasi anaerobik material pengisi. Densitas di atas 0.70 g/cm³ tidak disarankan karena risiko elongasi plastis pada dinding botol PET.",
+  "keyFindings": [
+    "Densitas minimum: 0.33 g/cm³ (200 g untuk botol 600 ml)",
+    "Densitas optimal: 0.37 - 0.45 g/cm³",
+    "Pencegahan void: rongga udara >5 mm menurunkan kekuatan geser hingga 40%",
+    "Pemisahan material basah/organik mutlak diwajibkan untuk mencegah pembentukan gas metana/anaerobik"
+  ],
+  "keywords": ["GEA", "standar densitas", "quality control", "structural", "PET bottle"]
+}

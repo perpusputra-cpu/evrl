@@ -21,6 +21,7 @@ import {
   ResearchNote,
   VariableItem,
 } from '../../types';
+import { MarkdownRenderer } from '../common/MarkdownRenderer';
 
 interface ResearchWorkspaceProps {
   kti: KTIStructure;
@@ -548,9 +549,9 @@ export const ResearchWorkspace: React.FC<ResearchWorkspaceProps> = ({
 
                   <h3 className="font-bold text-white text-sm font-sans">{note.title}</h3>
 
-                  <p className="text-xs text-stone-300 font-sans leading-relaxed whitespace-pre-line">
-                    {note.content}
-                  </p>
+                  <div className="text-xs text-stone-300 font-sans leading-relaxed">
+                    <MarkdownRenderer content={note.content} />
+                  </div>
 
                   <div className="flex flex-wrap gap-1 pt-2">
                     {note.tags.map((tag, idx) => (

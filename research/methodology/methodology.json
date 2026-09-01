@@ -1,0 +1,22 @@
+{
+  "id": "meth-001",
+  "title": "Protokol Metodologi Eksperimental Pemadatan Ecobrick EVRL",
+  "type": "methodology",
+  "principles": [
+    "Determinisme Perhitungan: Massa jenis (ρ) dihitung secara eksak dari massa bersih (m_net) dibagi volume botol (V_botol). Formula: ρ = (m_gross - m_tare) / V_nominal.",
+    "Batas Toleransi: Standar keberterimaan GEA adalah 0.33 <= ρ <= 0.70 g/cm³. Di bawah 0.33 diklasifikasikan sebagai 'Underpacked', di atas 0.70 sebagai 'Overcompressed' (risiko deformasi PET).",
+    "Faktor Kompaksi: Dihitung dari rasio densitas terhadap target optimum 0.45 g/cm³: Kompaksi (%) = min(100, (ρ / 0.45) * 100).",
+    "Uji Void: Pengecekan visual lapis per lapis pada 4 zona (bottom, middle, top, cap) dengan tekanan aksial minimum 8 ketukan per lapisan 25 g."
+  ],
+  "equipment": [
+    { "name": "Digital Scale", "precision": "0.1 g", "function": "Pengukuran massa botol tara, bahan isian, dan massa bruto" },
+    { "name": "Standard PET Bottle", "volume": "600 ml", "tare": "24.0 g", "height": "22.5 cm", "diameter": "6.5 cm" },
+    { "name": "Compacting Rod", "material": "Kayu/Bambu padat", "diameter": "2.0 cm", "length": "35 cm" },
+    { "name": "Precision Caliper", "precision": "0.05 mm", "function": "Verifikasi ekspansi diameter dinding botol" }
+  ],
+  "variables": {
+    "independent": ["Rasio komposisi LDPE vs BOPP (%)", "Ukuran partikel cacahan (<1 cm, 2-3 cm, >5 cm utuh)"],
+    "dependent": ["Massa jenis akhir (g/cm³)", "Faktor kompaksi (%)", "Kekerasan dinding (skala resistensi)", "Status kelulusan GEA"],
+    "controlled": ["Volume nominal botol (600 ml)", "Tingkat kekeringan dan kebersihan bahan", "Diameter tongkat pemadat (2.0 cm)"]
+  }
+}

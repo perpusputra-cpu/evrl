@@ -1,0 +1,16 @@
+{
+  "id": "lit-002",
+  "title": "Mechanical Interlocking and Packing Fraction in Shredded Multilayer Polymer Composites",
+  "type": "journal",
+  "source": "Journal of Polymer Waste Recycling & Circular Engineering, 18(2), 145-159",
+  "authors": "Hartono, B., Wiryawan, A., & Kusuma, D.",
+  "year": 2024,
+  "citation": "[REF-002] Hartono, B., et al. (2024). Mechanical Interlocking and Packing Fraction in Shredded Multilayer Polymer Composites. J. Polym. Waste Recycl., 18(2), 145-159.",
+  "abstract": "Studi eksperimental menunjukkan bahwa densitas bulk polimer film (BOPP/LDPE) saat dikompresi dalam tabung silindris meningkat secara eksponensial ketika rasio aspek cacahan (length/width) diperkecil di bawah 2.0. Friksi antar-lapisan bertindak sebagai penahan elastisitas balik (spring-back damping).",
+  "keyFindings": [
+    "Ukuran partikel <1.0 cm mengurangi spring-back hingga 68%",
+    "Komposisi hybrid 60% BOPP + 40% LDPE memberikan kekakuan maksimum tanpa void",
+    "Gaya kompresi manual berulang (siklus 10-15 ketukan) meningkatkan packing fraction hingga 0.52"
+  ],
+  "keywords": ["interlocking", "packing fraction", "BOPP", "LDPE", "spring-back", "komposisi"]
+}

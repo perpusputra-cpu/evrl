@@ -8,6 +8,7 @@ import { LabAiChat } from './components/ai/LabAiChat';
 import { JurySimulator } from './components/jury/JurySimulator';
 import {
   ChatMessage,
+  Conversation,
   Experiment,
   JuryDifficulty,
   JuryPersonaId,
@@ -296,6 +297,43 @@ export default function App() {
   const handleSendAiMessage = async (messageText: string) => {
     if (!workspace) return;
     setIsAiSending(true);
+
+    const tempUserMsg: ChatMessage = {
+      id: `msg_u_${Date.now()}`,
+      role: 'user',
+      content: messageText,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Optimistically update conversation with user message immediately
+    updateWorkspaceState((prev) => {
+      let convs = [...prev.conversations];
+      let cIdx = convs.findIndex((c) => c.id === prev.activeConversationId);
+      if (cIdx >= 0) {
+        convs[cIdx] = {
+          ...convs[cIdx],
+          messages: [...convs[cIdx].messages, tempUserMsg],
+          updatedAt: new Date().toISOString(),
+        };
+      } else {
+        const newConv: Conversation = {
+          id: `conv_${Date.now()}`,
+          workspaceId: prev.metadata.id,
+          title: messageText.slice(0, 40) + '...',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          messages: [tempUserMsg],
+          mode: 'ANALYST',
+        };
+        convs.unshift(newConv);
+      }
+      return {
+        ...prev,
+        conversations: convs,
+        activeConversationId: convs[0].id,
+      };
+    });
+
     try {
       const res = await api.sendLabAiMessage(
         messageText,
@@ -306,36 +344,27 @@ export default function App() {
       if (res.success && res.message) {
         updateWorkspaceState((prev) => {
           let convs = [...prev.conversations];
-          let cIdx = convs.findIndex((c) => c.id === res.conversation?.id || c.id === prev.activeConversationId);
-          if (cIdx >= 0) {
-            convs[cIdx] = {
-              ...convs[cIdx],
-              messages: [...convs[cIdx].messages, res.message],
-              updatedAt: new Date().toISOString(),
-            };
+          if (res.conversation && res.conversation.messages && res.conversation.messages.length > 0) {
+            const cIdx = convs.findIndex((c) => c.id === res.conversation.id || c.id === prev.activeConversationId);
+            if (cIdx >= 0) {
+              convs[cIdx] = res.conversation;
+            } else {
+              convs.unshift(res.conversation);
+            }
           } else {
-            convs.unshift({
-              id: res.conversation?.id || `conv_${Date.now()}`,
-              workspaceId: prev.metadata.id,
-              title: messageText.slice(0, 45) + '...',
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-              messages: [
-                {
-                  id: `msg_u_${Date.now()}`,
-                  role: 'user',
-                  content: messageText,
-                  createdAt: new Date().toISOString(),
-                },
-                res.message,
-              ],
-              mode: 'ANALYST',
-            });
+            let cIdx = convs.findIndex((c) => c.id === prev.activeConversationId);
+            if (cIdx >= 0) {
+              convs[cIdx] = {
+                ...convs[cIdx],
+                messages: [...convs[cIdx].messages, res.message],
+                updatedAt: new Date().toISOString(),
+              };
+            }
           }
           return {
             ...prev,
             conversations: convs,
-            activeConversationId: convs[0].id,
+            activeConversationId: res.conversation?.id || prev.activeConversationId || convs[0]?.id,
           };
         });
       }
@@ -347,17 +376,40 @@ export default function App() {
         const errorMsg: ChatMessage = {
           id: `msg_err_${Date.now()}`,
           role: 'assistant',
-          content: 'Maaf, layanan AI sedang sibuk. Data laboratorium dan naskah KTI Anda tetap aman di workspace ini.',
+          content: '⚠️ Maaf, layanan AI sedang mengalami kendala. Data laboratorium dan naskah KTI Anda tetap aman. Silakan ulangi pertanyaan Anda.',
           createdAt: new Date().toISOString(),
+          inferenceType: 'SCIENTIFIC_INFERENCE',
         };
         if (convs.length > 0) {
-          convs[0].messages.push(errorMsg);
+          convs[0] = {
+            ...convs[0],
+            messages: [...convs[0].messages, errorMsg],
+          };
         }
         return { ...prev, conversations: convs };
       });
     } finally {
       setIsAiSending(false);
     }
+  };
+
+  const handleClearConversation = () => {
+    updateWorkspaceState((prev) => {
+      const freshConv: Conversation = {
+        id: `conv_${Date.now()}`,
+        workspaceId: prev.metadata.id,
+        title: 'Konsultasi Riset Baru',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        messages: [],
+        mode: 'ANALYST',
+      };
+      return {
+        ...prev,
+        conversations: [freshConv, ...prev.conversations.filter((c) => c.id !== prev.activeConversationId)],
+        activeConversationId: freshConv.id,
+      };
+    });
   };
 
   const handleConsultAiFromExternal = (prompt: string) => {
@@ -438,7 +490,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 flex flex-col min-h-0">
         {activeTab === 'landing' && (
           <LandingPage
             onEnterLab={() => setActiveTab('lab')}
@@ -493,6 +545,7 @@ export default function App() {
           <LabAiChat
             conversation={activeConversation}
             onSendMessage={handleSendAiMessage}
+            onClearConversation={handleClearConversation}
             isSending={isAiSending}
             activeExperiment={activeExp}
             kti={workspace.kti}

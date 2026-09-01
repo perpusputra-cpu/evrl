@@ -1,0 +1,38 @@
+[
+  {
+    "id": "cit-001",
+    "code": "[REF-001]",
+    "title": "Global Ecobrick Alliance Technical Guidelines: Density, Quality Control and Structural Applications",
+    "authors": "Taubman, R., Himanshu, S., & Stoddart, I.",
+    "year": 2023,
+    "source": "Global Ecobrick Alliance (GEA) Official Standard Manual",
+    "tags": ["standard", "density", "GEA"]
+  },
+  {
+    "id": "cit-002",
+    "code": "[REF-002]",
+    "title": "Mechanical Interlocking and Packing Fraction in Shredded Multilayer Polymer Composites",
+    "authors": "Hartono, B., Wiryawan, A., & Kusuma, D.",
+    "year": 2024,
+    "source": "Journal of Polymer Waste Recycling & Circular Engineering, 18(2), 145-159",
+    "tags": ["interlocking", "materials", "mechanics"]
+  },
+  {
+    "id": "cit-003",
+    "code": "[REF-003]",
+    "title": "Life Cycle and Carbon Sequestration Potential of Standardized Ecobrick in Modular Green Structures",
+    "authors": "Pratama, S. E., & Widjaja, M.",
+    "year": 2025,
+    "source": "International Journal of Sustainable Environmental Engineering, 12(4), 312-328",
+    "tags": ["environmental", "carbon", "sustainability"]
+  },
+  {
+    "id": "cit-004",
+    "code": "[REF-004]",
+    "title": "Standard Test Method for Compressive Properties of Rigid Cellular Plastics",
+    "authors": "ASTM International",
+    "year": 2022,
+    "source": "ASTM D1621-16 Standard, West Conshohocken, PA",
+    "tags": ["compression", "testing", "ASTM"]
+  }
+]

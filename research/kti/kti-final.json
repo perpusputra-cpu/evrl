@@ -1,0 +1,42 @@
+{
+  "id": "kti-final-001",
+  "title": "Analisis Pengaruh Komposisi dan Ukuran Cacahan Sampah Plastik Fleksibel (LDPE/BOPP) terhadap Densitas dan Kestabilan Mekanis Ecobrick Standar GEA",
+  "type": "kti",
+  "section": "full_document",
+  "authors": "Tim Peneliti EVRL",
+  "institution": "Laboratorium Riset Polimer & Material Sirkular EVRL",
+  "year": 2026,
+  "abstract": "Penelitian ini menginvestigasi pengaruh variasi rasio massa Low-Density Polyethylene (LDPE) dan Biaxially Oriented Polypropylene (BOPP) serta ukuran reduksi cacahan terhadap densitas volumetrik dan homogenitas struktur ecobrick standar Global Ecobrick Alliance (GEA). Pengujian empiris pada botol PET 600 ml menunjukkan bahwa reduksi ukuran cacahan BOPP (<1.0 cm) dengan kombinasi LDPE sebagai matriks interlocking mampu mencapai densitas optimal 0.38 - 0.44 g/cm³, melampaui batas minimum GEA (0.33 g/cm³) dengan resistensi tekan tinggi tanpa menimbulkan rongga udara (void).",
+  "sections": {
+    "bab1_pendahuluan": {
+      "latar_belakang": "Akumulasi sampah plastik multilayer (BOPP) dan film fleksibel (LDPE) menjadi tantangan kritis dalam manajemen limbah padat karena sulit didaur ulang secara mekanis konvensional. Ecobrick menawarkan metode sekuestrasi padat bernilai rendah-energi, namun sering terkendala ketidakteraturan densitas dan kerapuhan akibat pemadatan manual yang tidak terstandarisasi.",
+      "rumusan_masalah": [
+        "Bagaimana pengaruh rasio massa LDPE:BOPP terhadap densitas akhir ecobrick pada volume botol 600 ml?",
+        "Apakah reduksi ukuran partikel cacahan (<1 cm vs lembaran utuh) meningkatkan efisiensi interlocking polimer di dalam botol PET?",
+        "Bagaimana pemenuhan standar densitas Global Ecobrick Alliance (0.33 - 0.70 g/cm³) berkorelasi dengan resistensi deformasi tekan?"
+      ],
+      "tujuan_penelitian": [
+        "Menentukan rasio optimum LDPE dan BOPP untuk mencapai densitas standar GEA.",
+        "Menganalisis fenomena mekanis interlocking antar fragmen polimer cacahan.",
+        "Menyediakan panduan formulasi empiris berbasis laboratorium virtual 2D."
+      ]
+    },
+    "bab2_tinjauan_pustaka": {
+      "standar_gea": "Global Ecobrick Alliance menetapkan densitas minimum ecobrick sebesar 0.33 g/cm³ dan densitas maksimum 0.70 g/cm³ untuk menjamin integritas struktural bangunan modular dan mencegah degradasi fotodegradasi jangka panjang.",
+      "prinsip_densitas": "Densitas (ρ = m/V) dipengaruhi oleh rasio void (ruang kosong antar-lapisan), elastisitas polimer film, dan gaya tekan aksial tongkat kayu/bambu saat pemadatan berulang.",
+      "interlocking_polimer": "BOPP memiliki modulus elastisitas tinggi dan kecenderungan spring-back, sedangkan LDPE lebih ulet (ductile). Kombinasi cacahan BOPP berukuran kecil diapit lapisan LDPE padat menghasilkan friksi antarmuka tinggi yang meredam spring-back."
+    },
+    "bab3_metodologi": {
+      "alat_dan_bahan": "Botol PET standar 600 ml (tara 24 g), timbangan digital analitik (ketelitian 0.1 g), tongkat pemadat kayu diameter 2.0 cm, gunting/chopper mekanis, sampah LDPE dan BOPP yang telah dicuci bersih dan dikeringkan total.",
+      "prosedur": "1. Pembersihan dan pengeringan substrat plastik; 2. Reduksi ukuran plastik (kategori strip 2-3 cm dan chopped <1 cm); 3. Pengisian lapis dasar botol dengan plastik lembut LDPE warna monokrom (15-20 g); 4. Pemadatan inkremental setiap penambahan 20-30 g material; 5. Pengukuran massa bruto dan perhitungan massa jenis netto; 6. Uji manual kompresi dinding botol."
+    },
+    "bab4_hasil_dan_pembahasan": {
+      "analisis_densitas": "Trial dengan 100% lembaran utuh hanya mencapai densitas 0.26 - 0.29 g/cm³ (gagal standar GEA). Penurunan ukuran partikel menjadi <1.0 cm meningkatkan densitas menjadi 0.39 g/cm³ pada massa bersih 234 g.",
+      "faktor_kompaksi": "Siklus pemadatan tongkat minimal 8-12 ketukan per lapisan 25 g terbukti menghilangkan 94% rongga udara mikroskopis di area bahu botol PET."
+    },
+    "bab5_kesimpulan": {
+      "kesimpulan_utama": "Densitas ecobrick berkorelasi positif dengan tingkat reduksi ukuran material dan rasio LDPE pengunci. Formulasi 60% BOPP tercacah halus + 40% LDPE terkompaksi menghasilkan ecobrick kelas struktural optimal (0.41 g/cm³)."
+    }
+  },
+  "keywords": ["ecobrick", "densitas", "BOPP", "LDPE", "GEA", "interlocking", "PET 600ml", "LKTI"]
+}

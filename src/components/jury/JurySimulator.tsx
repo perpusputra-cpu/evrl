@@ -26,6 +26,7 @@ import {
   WorkspaceState,
 } from '../../types';
 import { JURY_PERSONAS } from '../../utils/sampleData';
+import { MarkdownRenderer } from '../common/MarkdownRenderer';
 
 interface JurySimulatorProps {
   workspace: WorkspaceState;
@@ -347,8 +348,8 @@ export const JurySimulator: React.FC<JurySimulatorProps> = ({
             <span className="text-stone-400">Fokus: {currentQuestion.focusArea}</span>
           </div>
 
-          <div className="p-4 bg-[#141414] rounded-xl border border-[#262626] text-white font-serif text-sm sm:text-base leading-relaxed">
-            "{currentQuestion.questionText}"
+          <div className="p-4 bg-[#141822] rounded-xl border border-[#232936] text-white leading-relaxed">
+            <MarkdownRenderer content={currentQuestion.questionText} />
           </div>
 
           {/* Tips box */}

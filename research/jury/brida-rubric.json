@@ -1,0 +1,59 @@
+{
+  "id": "jury-rubric-brida-001",
+  "title": "Rubrik Penilaian & Standar Evaluasi Juri LKTI / BRIDA Riset Material Sirkular",
+  "organization": "Badan Riset dan Inovasi Daerah (BRIDA) / Dewan Juri LKTI Nasional",
+  "totalWeight": 100,
+  "categories": [
+    {
+      "id": "methodology",
+      "name": "Metodologi & Desain Eksperimen",
+      "weight": 25,
+      "description": "Kesesuaian rancangan eksperimen, kontrol variabel bebas/terikat/kontrol, validitas sampling, dan replikasi trial.",
+      "focusCriteria": [
+        "Kejelasan kontrol variabel (apakah volume botol dan tara dikontrol ketat?)",
+        "Pengulangan trial/replikasi data untuk membuktikan signifikansi",
+        "Prosedur preparasi dan reduksi ukuran sampel plastik"
+      ]
+    },
+    {
+      "id": "data_analysis",
+      "name": "Akurasi Data & Analisis Kuantitatif",
+      "weight": 25,
+      "description": "Kebenaran perhitungan densitas, korelasi antar-variabel, pemenuhan standar GEA (0.33 g/cm³), dan ketiadaan fabrikasi/anomali data.",
+      "focusCriteria": [
+        "Akurasi kalkulasi ρ = m/V tanpa pembulatan palsu",
+        "Pemisahan tegas data terukur (MEASURED) vs data simulasi (SIMULATED)",
+        "Penjelasan ilmiah terhadap anomali atau data pencilan (outlier)"
+      ]
+    },
+    {
+      "id": "scientific_reasoning",
+      "name": "Penalaran Ilmiah & Landasan Teori",
+      "weight": 25,
+      "description": "Kedalaman argumen fisika polimer, interlocking mekanis, sifat termoplastik, dan penguasaan literatur primer.",
+      "focusCriteria": [
+        "Kemampuan menjelaskan fenomena spring-back pada BOPP",
+        "Pemahaman matriks interlocking LDPE vs BOPP",
+        "Sitasi yang tepat pada standar GEA dan jurnal terkait"
+      ]
+    },
+    {
+      "id": "scientific_defense",
+      "name": "Ketangguhan Pertahanan & Penguasaan Riset",
+      "weight": 25,
+      "description": "Respon terhadap sanggahan juri, objektivitas mengakui limitasi, dan ketiadaan klaim berlebihan (overclaiming).",
+      "focusCriteria": [
+        "Kesiapan menjawab serangan metodologi dan data pencilan",
+        "Keterbukaan terhadap keterbatasan alat manual",
+        "Sikap ilmiah yang lugas dan tidak defensif tanpa dasar data"
+      ]
+    }
+  ],
+  "juryModes": [
+    { "id": "practice", "name": "Practice Mode", "description": "Latihan 1-per-1 interaktif dengan umpan balik mendalam dan kunci jawaban ideal." },
+    { "id": "rapid_fire", "name": "Rapid Fire", "description": "Serangkaian 4-5 pertanyaan beruntun bertempo cepat menguji refleks ilmiah." },
+    { "id": "methodology_attack", "name": "Methodology Attack", "description": "Fokus membedah kelemahan desain eksperimen, kontrol variabel, dan kalibrasi alat." },
+    { "id": "data_attack", "name": "Data Attack", "description": "Mengincar inkonsistensi angka, deviasi densitas, dan anomali perhitungan." },
+    { "id": "scientific_defense", "name": "Scientific Defense", "description": "Menantang klaim tanpa bukti (unsupported claims) dan overgeneralisasi." }
+  ]
+}

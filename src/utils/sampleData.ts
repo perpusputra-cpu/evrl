@@ -69,7 +69,7 @@ export const JURY_PERSONAS = [
       'Menguji dekonstruksi knowledge-action gap pada siswa, kemitraan orang tua sebagai arsitek karakter domestik, serta integrasi program Adiwiyata.',
   },
   {
-    id: 'skeptic' as const,
+    id: 'skeptical' as const,
     name: 'Dr. Irwan Susanto, Ph.D.',
     title: 'Penguji Kritis Teori Perilaku & LKTI Examination',
     focus: 'Uji Kritis Teori TPB, VBN & Keberlanjutan Nilai',
@@ -980,12 +980,12 @@ export function createInitialWorkspaceState(workspaceId: string): WorkspaceState
             content: `Berdasarkan naskah KTI resmi Anda (**"Pemanfaatan Ecobrick dalam Perspektif Rekayasa Pedagogis Berkelanjutan: Sinergi Sekolah dan Orang Tua Menuju Lingkungan Mandiri"**):
 
 ### 1. Hubungan Teknis ke Teori Perilaku (TPB & VBN)
-* **Kepatuhan Standar Teknis:** Botol 330 ml mencapai massa $115.0\\text{ g} \\rightarrow \\rho = 0.3485\\text{ g/ml}$, melampaui ambang batas $0.33\\text{ g/ml}$ yang disyaratkan dalam **[REF-001]** dan **[REF-002]** (BRIDA Kota Mataram 2026).
+* **Kepatuhan Standar Teknis:** Botol 330 ml mencapai massa 115.0 g → ρ = 0.3485 g/cm³, melampaui ambang batas minimal 0.33 g/cm³ yang disyaratkan dalam **[REF-001]** dan **[REF-002]** (BRIDA Kota Mataram 2026).
 * **Dimensi TPB (*Perceived Behavioral Control*):** Ketika siswa berhasil memadatkan botol hingga mencapai standar kuantitatif terukur, rasa efikasi diri (*self-efficacy*) meningkat secara psikomotorik (merujuk **[REF-004]** de Leeuw et al., 2015).
 * **Dimensi VBN (*Personal Norm Activation*):** Proses pemilahan sampah bersih-kering bersama orang tua di rumah menginternalisasi nilai biosferik menjadi norma moral pribadi (merujuk **[REF-007]** Liobikienė & Poškus, 2019).
 
 ### 2. Rekomendasi Argumen Sidang Juri LKTI
-Sampaikan bahwa ecobrick dalam riset MA Plus Abu Hurairah bukan sekadar produk kerajinan tangan, melainkan **medium rekayasa pedagogis berkelanjutan (ESLF)** yang menutup *knowledge-action gap* (N-gain $0.61$, **[REF-009]** Susilawati et al.; Kesadaran $87\\%$, **[REF-017]** Sakti Jaya et al.).`,
+Sampaikan bahwa ecobrick dalam riset MA Plus Abu Hurairah bukan sekadar produk kerajinan tangan, melainkan **medium rekayasa pedagogis berkelanjutan (ESLF)** yang menutup *knowledge-action gap* (N-gain 0.61, **[REF-009]** Susilawati et al.; Kesadaran 87%, **[REF-017]** Sakti Jaya et al.).`,
             createdAt: new Date(Date.now() - 3600000 * 1).toISOString(),
             citations: ['[REF-001]', '[REF-002]', '[REF-004]', '[REF-007]', '[REF-009]', '[REF-017]'],
             inferenceType: 'EVIDENCE_BASED',
