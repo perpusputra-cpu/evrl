@@ -67,11 +67,18 @@ export const api = {
     return request<{ success: boolean; state: WorkspaceState }>('/api/workspace/state');
   },
 
-  async saveWorkspaceState(state: WorkspaceState): Promise<{ success: boolean; lastActivityAt: string }> {
-    return request<{ success: boolean; lastActivityAt: string }>('/api/workspace/save', {
+  async saveWorkspaceState(state: WorkspaceState): Promise<{ success: boolean; lastActivityAt: string; workspaceId?: string }> {
+    if (state.metadata?.id) {
+      setCachedWorkspaceId(state.metadata.id);
+    }
+    const res = await request<{ success: boolean; lastActivityAt: string; workspaceId?: string }>('/api/workspace/save', {
       method: 'POST',
       body: JSON.stringify({ state }),
     });
+    if (res.workspaceId) {
+      setCachedWorkspaceId(res.workspaceId);
+    }
+    return res;
   },
 
   async loadSamplePreset(): Promise<{ success: boolean; state: WorkspaceState }> {

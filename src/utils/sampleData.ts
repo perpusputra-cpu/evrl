@@ -608,6 +608,399 @@ export const SAMPLE_REFERENCES: ReferenceItem[] = [
     relevanceRating: 'High',
     uploadedAt: new Date().toISOString(),
   },
+  {
+    id: 'ref-025',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Ecoliteracy in utilizing plastic waste to ecobrick through project based learning on social studies learning',
+    authors: 'Rahmawati, A.',
+    year: 2019,
+    source: 'International Journal of Pedagogy of Social Studies, 4(2)',
+    citationCode: '[REF-025]',
+    doiOrUrl: 'https://doi.org/10.17509/ijposs.v4i2.21504',
+    abstractOrSummary:
+      'Penelitian tindakan kelas (PTK) tiga siklus di SMP Indonesia yang mengintegrasikan pembuatan ecobrick ke dalam pembelajaran IPS berbasis proyek (PjBL) untuk meningkatkan ecoliteracy siswa.',
+    keyFindings: [
+      'Tingkat ecoliteracy siswa meningkat secara progresif dari kategori kurang, cukup, hingga baik melalui tiga siklus tindakan.',
+      'PjBL ecobrick mengontekstualisasikan masalah sampah plastik menjadi aksi nyata yang bermakna bagi peserta didik.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-026',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Ecobricks creation for preschool children: Sustainable Development Goals 2030',
+    authors: 'Nurjanah, N. E., Yetti, E., & Sumantri, M. S.',
+    year: 2025,
+    source: 'IOP Conference Series: Earth and Environmental Science, 1438(1), 012037',
+    citationCode: '[REF-026]',
+    doiOrUrl: 'https://doi.org/10.1088/1755-1315/1438/1/012037',
+    abstractOrSummary:
+      'Studi naratif mengenai pengenalan ecobrick pada anak usia dini sebagai sarana edukasi pengelolaan limbah plastik dan stimulasi kepedulian lingkungan sejalan dengan target SDGs 2030.',
+    keyFindings: [
+      'Pembuatan ecobrick efektif mengenalkan pemilahan sampah, kepedulian lingkungan, kreativitas, dan keterampilan berpikir kritis sejak usia prasekolah.',
+      'Menekankan pentingnya pendampingan orang dewasa dalam memastikan keamanan dan kebermaknaan aktivitas.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-027',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Education of Waste Management Based on Zero Waste in Kendal District (Case Study: Waste Recycling Craft Community (Kerdus), Kendal District, Central Java)',
+    authors: 'Hidayati, N., Hajar, N., & Setiyanto, F.',
+    year: 2021,
+    source: 'IOP Conference Series: Earth and Environmental Science, 755(1), 012077',
+    citationCode: '[REF-027]',
+    doiOrUrl: 'https://doi.org/10.1088/1755-1315/755/1/012077',
+    abstractOrSummary:
+      'Studi kasus kualitatif fenomenologis mengenai program edukasi pengelolaan sampah berbasis zero-waste dan upcycling ecobrick di komunitas.',
+    keyFindings: [
+      'Sebanyak 76% peserta berhasil menerapkan praktik 3R (Reduce, Reuse, Recycle) dalam kehidupan sehari-hari pasca-pelatihan ecobrick.',
+      'Pelatihan komprehensif mengubah persepsi limbah plastik dari beban buangan menjadi aset material berdaya guna.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-028',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title: 'Model Garden Literation Based Ecobrick',
+    authors: 'Suhendri, E., Saam, Z., Suprayogi, I., & Chairilsyah, D.',
+    year: 2021,
+    source: 'Degres, 20(1), 126–133',
+    citationCode: '[REF-028]',
+    doiOrUrl: 'https://doi.org/10.1877/degres.v20i1.49',
+    abstractOrSummary:
+      'Studi deskriptif-kualitatif yang merancang model taman literasi sekolah berbasis ecobrick sebagai solusi praktis pengelolaan sampah plastik di 45 sekolah (konteks estimasi 30.639 siswa).',
+    keyFindings: [
+      'Ecobrick terbukti sangat layak secara material dan fungsional untuk konstruksi modular taman literasi sekolah.',
+      'Mengintegrasikan reduksi sampah sekolah dengan sarana peningkatan minat baca siswa.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-029',
+    workspaceId: 'sample-ws',
+    type: 'COMMUNITY_REPORT',
+    title:
+      'Ecobrick as a smart solution for utilizing plastic and cloth waste in Jakarta',
+    authors: 'Yusuf, Y., Sukmawati, W., & Riyanti, H. B.',
+    year: 2020,
+    source: 'Journal of Community Services and Empowerment, 1(3), 114–120',
+    citationCode: '[REF-029]',
+    doiOrUrl: 'https://doi.org/10.22219/jcse.v1i3.12250',
+    abstractOrSummary:
+      'Pemberdayaan masyarakat dalam mengolah kombinasi limbah plastik anorganik dan sisa kain perca menjadi modul furnitur ecobrick bernilai ekonomis dan estetis.',
+    keyFindings: [
+      'Ecobrick menjadi solusi pintar dan murah mereduksi timbulan sampah anorganik perkotaan padat penduduk.',
+      'Meningkatkan keterampilan vokasional dan kebersamaan komunitas.',
+    ],
+    relevanceRating: 'Supporting',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-030',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      "Enhancing children's environmental cognition, affect, and behavior through project-based STEM learning toward the SDGs",
+    authors:
+      'Al-Barakat, A., Alali, R., Al-Hosan, A., Alghamdi, M., Abdullatif, A. K., & Zaher, A.',
+    year: 2026,
+    source: 'Frontiers in Psychology, 17, 1880850',
+    citationCode: '[REF-030]',
+    doiOrUrl: 'https://doi.org/10.3389/fpsyg.2026.1880850',
+    abstractOrSummary:
+      'Studi kuasi-eksperimental dan kualitatif intervensi pembelajaran STEM berbasis proyek terstruktur yang mengukur ranah kognitif, afektif, dan perilaku pro-lingkungan anak terkait target SDGs.',
+    keyFindings: [
+      'Pembelajaran berbasis proyek (PjBL-STEM) secara signifikan mengungguli pengajaran konvensional di seluruh domain kognitif, afektif, dan psikomotorik.',
+      'Siswa secara aktif mentranslasikan pemahaman kelas menjadi kebiasaan keberlanjutan dalam rutinitas harian.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-031',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title: 'Project-based Learning for Environmental Sustainability Action',
+    authors:
+      'Bramwell-Lalor, S., Kelly, K., Ferguson, T., Gentles, C. H., & Roofe, C.',
+    year: 2020,
+    source: 'Southern African Journal of Environmental Education, 36(1), 10',
+    citationCode: '[REF-031]',
+    doiOrUrl: 'https://doi.org/10.4314/sajee.v36i1.10',
+    abstractOrSummary:
+      'Analisis Education for Sustainable Development (ESD) mengenai peran PjBL dalam menumbuhkan kompetensi keberlanjutan holistik pada siswa dan guru.',
+    keyFindings: [
+      'PjBL memfasilitasi 4 kompetensi kunci keberlanjutan: kolaborasi, berpikir kritis, kesadaran diri, dan komunikasi solutif.',
+      'Mendorong motivasi intrinsik guru dan siswa untuk mengambil aksi pro-lingkungan nyata.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-032',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Evaluating Three Dimensions of Environmental Knowledge and Their Impact on Behaviour',
+    authors: 'Braun, T., & Dierkes, P.',
+    year: 2019,
+    source: 'Research in Science Education, 49, 1–19',
+    citationCode: '[REF-032]',
+    doiOrUrl: 'https://doi.org/10.1007/s11165-017-9658-7',
+    abstractOrSummary:
+      'Evaluasi empiris mengenai tiga dimensi pengetahuan lingkungan (system knowledge, action-related knowledge, dan effectiveness knowledge) serta korelasinya dengan tindakan nyata.',
+    keyFindings: [
+      'Program aksi langsung menghasilkan peningkatan berkelanjutan pada ketiga dimensi pengetahuan dan memicu aksi pro-lingkungan.',
+      'Pengetahuan sistem saja memiliki korelasi lemah dengan perilaku langsung, membuktikan adanya knowledge-action gap yang membutuhkan intervensi berbasis aksi.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-033',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title: 'The project-based learning approach in environmental education',
+    authors: 'Genç, M.',
+    year: 2015,
+    source:
+      'International Research in Geographical and Environmental Education, 24(2), 105–117',
+    citationCode: '[REF-033]',
+    doiOrUrl: 'https://doi.org/10.1080/10382046.2014.993169',
+    abstractOrSummary:
+      'Penelitian efektivitas pendekatan Project-Based Learning dalam pendidikan lingkungan calon guru dalam meningkatkan sikap dan kompetensi riset.',
+    keyFindings: [
+      'PjBL memperbaiki sikap lingkungan, mendorong kreativitas, memperjelas identifikasi masalah lokal, dan menumbuhkan partisipasi aktif dalam merumuskan solusi.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-034',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Roles of Environmental System Knowledge in Promoting University Students’ Environmental Attitudes and Pro-Environmental Behaviors',
+    authors: 'Janmaimool, P., & Khajohnmanee, S.',
+    year: 2019,
+    source: 'Sustainability, 11(16), 4270',
+    citationCode: '[REF-034]',
+    doiOrUrl: 'https://doi.org/10.3390/su11164270',
+    abstractOrSummary:
+      'Investigasi peran pengetahuan sistem dalam mendorong sikap dan perilaku pro-lingkungan privat vs publik.',
+    keyFindings: [
+      'Kuliah formal meningkatkan sikap dan perilaku dampak tidak langsung, tetapi perilaku langsung (pemilahan sampah dan daur ulang) sangat bergantung pada norma pribadi, motivasi, dan fasilitas.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-035',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      "Improvement impact of nudges incorporated in environmental education on students' environmental knowledge, attitudes, and behaviors",
+    authors:
+      'Kurokawa, H., Igei, K., Kitsuki, A., Kurita, K., Managi, S., Nakamuro, M., & Sakano, A.',
+    year: 2022,
+    source: 'Journal of Environmental Management, 325(Pt B), 116612',
+    citationCode: '[REF-035]',
+    doiOrUrl: 'https://doi.org/10.1016/j.jenvman.2022.116612',
+    abstractOrSummary:
+      'Uji coba lapangan pemberian intervensi nudges dalam pendidikan lingkungan untuk menguji elastisitas perilaku berbiaya rendah vs berbiaya tinggi.',
+    keyFindings: [
+      'Perilaku rendah biaya (misal menolak tisu basah gratis) lebih cepat berubah dibandingkan perilaku berbiaya tinggi (berhenti membeli botol plastik kemasan), menegaskan perlunya infrastruktur pendukung.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-036',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Using the theory of planned behavior to identify key beliefs underlying pro-environmental behavior in high-school students: Implications for educational interventions',
+    authors: 'de Leeuw, A., Valois, P., Ajzen, I., & Schmidt, P.',
+    year: 2015,
+    source: 'Journal of Environmental Psychology, 42, 128–138',
+    citationCode: '[REF-036]',
+    doiOrUrl: 'https://doi.org/10.1016/j.jenvp.2015.03.005',
+    abstractOrSummary:
+      'Survei longitudinal berbasis TPB pada siswa SMA untuk mengidentifikasi keyakinan kontrol perilaku kunci dalam intervensi pendidikan.',
+    keyFindings: [
+      'Sikap siswa SMA umumnya sudah positif, sehingga intervensi paling efektif harus berfokus pada keyakinan kontrol (perceived behavioral control) seperti tempat sampah pilah di rumah dan panduan praktis.',
+      'Dukungan dan teladan orang tua merupakan faktor penentu stabilitas norma subjektif.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-037',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Environmental Education, Knowledge, and High School Students’ Intention toward Separation of Solid Waste on Campus',
+    authors: 'Liao, C., & Li, H.',
+    year: 2019,
+    source:
+      'International Journal of Environmental Research and Public Health, 16(9), 1659',
+    citationCode: '[REF-037]',
+    doiOrUrl: 'https://doi.org/10.3390/ijerph16091659',
+    abstractOrSummary:
+      'Penerapan model TPB yang diperluas pada 562 siswa SMA untuk mengukur prediktor intensi pemilahan sampah padat di lingkungan kampus/sekolah.',
+    keyFindings: [
+      'Pengetahuan lingkungan terbukti menjadi prediktor terkuat dalam menentukan niat pemilahan sampah pada siswa sekolah menengah.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-038',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Green Awareness in Action—How Energy Conservation Action Forces on Environmental Knowledge, Values and Behaviour in Adolescents’ School Life',
+    authors: 'Maurer, M., Koulouris, P., & Bogner, F.',
+    year: 2020,
+    source: 'Sustainability, 12(3), 955',
+    citationCode: '[REF-038]',
+    doiOrUrl: 'https://doi.org/10.3390/su12030955',
+    abstractOrSummary:
+      'Proyek sekolah GAIA di Yunani yang meneliti dampak aksi konservasi terhadap pengetahuan aksi, nilai lingkungan, dan perilaku remaja.',
+    keyFindings: [
+      'Aksi nyata di sekolah meningkatkan pengetahuan efektivitas dan menurunkan nilai utilitarian (eksploitatif), di mana siswa dengan pengetahuan awal rendah mengalami lonjakan tertinggi.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-039',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Utilizing project-based learning to increase sustainability attitudes among students',
+    authors: 'Perrault, E. K., & Albert, C. A.',
+    year: 2017,
+    source: 'Applied Environmental Education & Communication, 17(2), 96–105',
+    citationCode: '[REF-039]',
+    doiOrUrl: 'https://doi.org/10.1080/1533015x.2017.1366882',
+    abstractOrSummary:
+      'Studi empiris penggunaan PjBL dalam mendorong peningkatan sikap keberlanjutan dan keterlibatan aktif peserta didik.',
+    keyFindings: [
+      'PjBL terbukti secara signifikan meningkatkan sikap keberlanjutan dan rasa kepemilikan solusi lingkungan pada siswa.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-040',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'What Works for Whom? Investigating Adolescents’ Pro-Environmental Behaviors',
+    authors: 'Poškus, M. S.',
+    year: 2020,
+    source: 'Sustainability, 12(18), 7313',
+    citationCode: '[REF-040]',
+    doiOrUrl: 'https://doi.org/10.3390/su12187313',
+    abstractOrSummary:
+      'Survei klaster pada 863 remaja mengenai variasi pola TPB berdasarkan tipe kepribadian dan jenis perilaku pro-lingkungan.',
+    keyFindings: [
+      'Pola pembentukan perilaku pro-lingkungan berbeda menurut profil psikologis siswa; pendekatan intervensi harus variatif dan mencakup stimulasi kelompok serta refleksi mandiri.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-041',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Educating for the future: How higher education in environmental management affects pro-environmental behaviour',
+    authors:
+      'Suárez‐Perales, I., Valero‐Gil, J., La Hiz, D. L. I., Rivera‐Torres, P., & Garcés‐Ayerbe, C.',
+    year: 2021,
+    source: 'Journal of Cleaner Production, 313, 128972',
+    citationCode: '[REF-041]',
+    doiOrUrl: 'https://doi.org/10.1016/j.jclepro.2021.128972',
+    abstractOrSummary:
+      'Eksperimen pendidikan lingkungan yang membuktikan jalur mediasi knowledge-concern-willingness dalam mengatasi kendala perubahan perilaku.',
+    keyFindings: [
+      'Pendidikan lingkungan memengaruhi perilaku melalui jalur tidak langsung: Pengetahuan → Kepedulian Afektif → Kesediaan Bertindak (Willingness to Act).',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-042',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Understanding Waste Management Behavior Among University Students in China: Environmental Knowledge, Personal Norms, and the Theory of Planned Behavior',
+    authors: 'Wu, L., Zhu, Y., & Zhai, J.',
+    year: 2022,
+    source: 'Frontiers in Psychology, 12, 771723',
+    citationCode: '[REF-042]',
+    doiOrUrl: 'https://doi.org/10.3389/fpsyg.2021.771723',
+    abstractOrSummary:
+      'Survei cross-sectional pada 434 responden yang menggabungkan TPB, norma pribadi, dan pengetahuan lingkungan dalam memprediksi perilaku pengelolaan sampah.',
+    keyFindings: [
+      'Norma subjektif, kontrol perilaku terpersepsi, norma pribadi, dan pengetahuan memprediksi perilaku pemilahan sampah secara signifikan, di mana pengetahuan bekerja secara tidak langsung melalui kepedulian dan norma pribadi.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-043',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Pro-environmental behaviors through the lens of the theory of planned behavior: A scoping review',
+    authors:
+      'Yuriev, A., Dahmen, M., Paillé, P., Boiral, O., & Guillaumie, L.',
+    year: 2020,
+    source: 'Resources, Conservation and Recycling, 155, 104660',
+    citationCode: '[REF-043]',
+    doiOrUrl: 'https://doi.org/10.1016/j.resconrec.2019.104660',
+    abstractOrSummary:
+      'Tinjauan pelingkup (scoping review) komprehensif terhadap 126 publikasi ilmiah mengenai penerapan TPB dalam perilaku pro-lingkungan.',
+    keyFindings: [
+      'Menyoroti inkonsistensi jika TPB diterapkan tanpa mempertimbangkan kendala struktural praktis dan konteks sosial budaya spesifik peserta didik.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
+  {
+    id: 'ref-044',
+    workspaceId: 'sample-ws',
+    type: 'JOURNAL',
+    title:
+      'Greening due to environmental education? Environmental knowledge, attitudes, consumer behavior and everyday pro-environmental activities of Hungarian high school and university students',
+    authors: 'Zsóka, Á., Szerényi, Z., Széchy, A., & Kocsis, T.',
+    year: 2013,
+    source: 'Journal of Cleaner Production, 48, 126–138',
+    citationCode: '[REF-044]',
+    doiOrUrl: 'https://doi.org/10.1016/j.jclepro.2012.11.030',
+    abstractOrSummary:
+      'Studi hubungan intensitas pendidikan lingkungan terhadap pengetahuan, sikap konsumsi berkelanjutan, dan tindakan harian pada siswa SMA dan mahasiswa.',
+    keyFindings: [
+      'Intensitas pendidikan berkorelasi kuat dengan pengetahuan dan sikap, tetapi pembentukan tindakan harian membutuhkan pembiasaan keluarga dan rutinitas terpandu.',
+    ],
+    relevanceRating: 'High',
+    uploadedAt: new Date().toISOString(),
+  },
 ];
 
 export const SAMPLE_NOTES: ResearchNote[] = [
@@ -640,6 +1033,36 @@ export const SAMPLE_NOTES: ResearchNote[] = [
     tags: ['TPB', 'VBN', 'Sinergi Orang Tua', 'Sidang Juri'],
     createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
     updatedAt: new Date(Date.now() - 3600000 * 4).toISOString(),
+  },
+  {
+    id: 'note-004',
+    workspaceId: 'sample-ws',
+    title: 'Sintesis Bukti Empiris Ecobrick & Upcycling di Sekolah',
+    content:
+      'Bukti langsung ecobrick di sekolah:\n• Rahmawati (2019): PjBL ecobrick menaikkan ecoliteracy siswa SMP bertahap dari rendah → cukup → baik dalam 3 siklus tindakan.\n• Nurjanah et al. (2025): Pengenalan ecobrick pada anak usia dini menstimulasi pemilahan sampah dan kepedulian lingkungan sejalan SDGs 2030.\n• Hidayati et al. (2021): 76% peserta menerapkan prinsip 3R pasca-pelatihan ecobrick/zero waste.\n• Suhendri et al. (2021): Kelayakan taman literasi ecobrick dievaluasi pada 45 sekolah (30.639 siswa) sebagai solusi limbah plastik terapan.\n• Yusuf et al. (2020): Solusi cerdas pengolahan plastik & kain perca di perkotaan.',
+    tags: ['Ecobrick', 'Ecoliteracy', 'Sintesis Literatur', 'PjBL'],
+    createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
+    updatedAt: new Date(Date.now() - 3600000 * 2).toISOString(),
+  },
+  {
+    id: 'note-005',
+    workspaceId: 'sample-ws',
+    title: 'Dekonstruksi Knowledge–Action Gap melalui PjBL & Experiential Learning',
+    content:
+      'Mengapa pengetahuan saja tidak cukup melahirkan aksi lingkungan?\n• Braun & Dierkes (2019): Pengetahuan sistem memiliki korelasi lemah dengan perilaku langsung jika tidak diimbangi action-related & effectiveness knowledge.\n• Al-Barakat et al. (2026): Proyek STEM terstruktur mengungguli instruksi tradisional di ketiga ranah (kognitif, afektif, perilaku).\n• Bramwell-Lalor et al. (2020) & Genç (2015): PjBL membangun kompetensi keberlanjutan holistik (kritis, kolaboratif, inisiatif).\n• Kurokawa et al. (2022): Tindakan berbiaya rendah (refusal wet wipes) mudah berubah dengan edukasi, sedangkan tindakan konsumsi botol memerlukan rekayasa pedagogis berkelanjutan (ESLF).\n• Suárez-Perales et al. (2021): Pengetahuan harus melalui mediasi Kepedulian Afektif → Kesediaan Bertindak.',
+    tags: ['Knowledge-Action Gap', 'PjBL', 'Experiential Learning', 'ESLF'],
+    createdAt: new Date(Date.now() - 3600000 * 1.5).toISOString(),
+    updatedAt: new Date(Date.now() - 3600000 * 1.5).toISOString(),
+  },
+  {
+    id: 'note-006',
+    workspaceId: 'sample-ws',
+    title: 'Prediktor TPB, VBN, dan Peran Kemitraan Keluarga',
+    content:
+      'Temuan kunci penelitian perilaku siswa:\n• de Leeuw et al. (2015): Pada siswa SMA, sikap umumnya sudah positif. Tuas intervensi paling efektif adalah keyakinan kontrol (perceived behavioral control) seperti tempat sampah pilah di rumah dan bimbingan orang tua.\n• Liao & Li (2019): Pengetahuan spesifik memprediksi 562 niat pemilahan sampah siswa secara signifikan.\n• Wu et al. (2022): Norma subjektif & norma pribadi memediasi perilaku pengelolaan sampah.\n• Maurer et al. (2020) & Zsóka et al. (2013): Nilai biosferik dan intensitas pendidikan membutuhkan penguatan domestik di rumah agar menjadi karakter permanen.\n• Poškus (2020) & Yuriev et al. (2020): Perlu diferensiasi intervensi dan penyediaan sarana struktural.',
+    tags: ['TPB', 'VBN', 'Family Context', 'Perceived Behavioral Control'],
+    createdAt: new Date(Date.now() - 3600000 * 1).toISOString(),
+    updatedAt: new Date(Date.now() - 3600000 * 1).toISOString(),
   },
 ];
 

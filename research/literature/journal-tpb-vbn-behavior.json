@@ -1,0 +1,18 @@
+{
+  "id": "lit-tpb-vbn-behavior",
+  "title": "Theoretical Predictors of Student Pro-Environmental Behavior: TPB, VBN, and Family Context",
+  "type": "journal_synthesis",
+  "source": "Meta-Synthesis on Behavioral Psychology & Family-School Synergy",
+  "authors": "de Leeuw et al. (2015), Liao & Li (2019), Wu et al. (2022), Poškus (2020), Yuriev et al. (2020), Zsóka et al. (2013), Maurer et al. (2020)",
+  "year": 2026,
+  "citation": "[REF-036], [REF-037], [REF-040], [REF-042], [REF-043], [REF-044], [REF-004], [REF-007]",
+  "abstract": "Sintesis model Theory of Planned Behavior (TPB) dan Value-Belief-Norm (VBN) dalam memprediksi perilaku pro-lingkungan siswa. Studi menunjukkan bahwa sikap siswa sekolah menengah umumnya sudah positif; oleh karena itu, tuas intervensi yang paling menentukan perubahan perilaku adalah kontrol perilaku terpersepsi (perceived behavioral control) dan norma subjektif (de Leeuw et al., 2015). Pengetahuan lingkungan menjadi prediktor kuat niat pemilahan sampah (Liao & Li, 2019) dan bekerja secara tidak langsung melalui norma pribadi serta kepedulian afektif (Wu et al., 2022). Keberadaan fasilitas pemilahan di rumah dan keteladanan orang tua menjadi faktor mediasi kunci yang menjamin kelanggengan karakter pro-lingkungan (de Leeuw et al., 2015; Zsóka et al., 2013).",
+  "keyFindings": [
+    "de Leeuw et al. (2015): Keyakinan kontrol (tempat sampah terpilah di rumah, instruksi praktis, teladan orang tua) adalah penentu terbesar stabilitas perilaku lingkungan remaja.",
+    "Liao & Li (2019): Pada 562 siswa SMA, pengetahuan lingkungan spesifik merupakan prediktor terkuat niat pemilahan sampah padat.",
+    "Wu et al. (2022): Norma subjektif, kontrol terpersepsi, norma pribadi, dan pengetahuan memprediksi perilaku pengelolaan limbah siswa.",
+    "Maurer et al. (2020) & Zsóka et al. (2013): Nilai biosferik dan intensitas pendidikan menekan orientasi utilitarian, tetapi memerlukan penguatan domestik berkelanjutan.",
+    "Yuriev et al. (2020) & Poškus (2020): Tinjauan 126 studi TPB menegaskan perlunya mempertimbangkan faktor struktural, tipe kepribadian, dan jenis perilaku."
+  ],
+  "keywords": ["tpb", "vbn", "perceived_behavioral_control", "subjective_norms", "personal_norms", "family_context", "parental_modeling"]
+}

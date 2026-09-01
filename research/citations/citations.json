@@ -2,37 +2,397 @@
   {
     "id": "cit-001",
     "code": "[REF-001]",
-    "title": "Global Ecobrick Alliance Technical Guidelines: Density, Quality Control and Structural Applications",
-    "authors": "Taubman, R., Himanshu, S., & Stoddart, I.",
-    "year": 2023,
-    "source": "Global Ecobrick Alliance (GEA) Official Standard Manual",
-    "tags": ["standard", "density", "GEA"]
+    "title": "Sinergi sekolah-orang tua dalam pengelolaan sampah plastik berbasis ecobrick [Laporan riset/Draft KTI]",
+    "authors": "Arya, M., Nidal, A., & Hidarman, A. G.",
+    "year": 2026,
+    "source": "Mataram: MA Plus Abu Hurairah (Dibimbing Muzanni Jauhari, M.Pd.)",
+    "tags": ["primary_kti", "eslf", "sinergi_orang_tua", "ecobrick"]
   },
   {
     "id": "cit-002",
     "code": "[REF-002]",
-    "title": "Mechanical Interlocking and Packing Fraction in Shredded Multilayer Polymer Composites",
-    "authors": "Hartono, B., Wiryawan, A., & Kusuma, D.",
-    "year": 2024,
-    "source": "Journal of Polymer Waste Recycling & Circular Engineering, 18(2), 145-159",
-    "tags": ["interlocking", "materials", "mechanics"]
+    "title": "Panduan penulisan karya tulis ilmiah (KTI) sekolah berkelanjutan",
+    "authors": "Badan Riset dan Inovasi Daerah (BRIDA) Kota Mataram",
+    "year": 2026,
+    "source": "BRIDA Kota Mataram Official Guidelines",
+    "tags": ["regulasi", "brida", "standar_kti"]
   },
   {
     "id": "cit-003",
     "code": "[REF-003]",
-    "title": "Life Cycle and Carbon Sequestration Potential of Standardized Ecobrick in Modular Green Structures",
-    "authors": "Pratama, S. E., & Widjaja, M.",
-    "year": 2025,
-    "source": "International Journal of Sustainable Environmental Engineering, 12(4), 312-328",
-    "tags": ["environmental", "carbon", "sustainability"]
+    "title": "Pedoman struktur umum karya tulis ilmiah (KTI) 2026",
+    "authors": "Panitia Riset Sekolah",
+    "year": 2026,
+    "source": "Panitia Riset Sekolah, Mataram",
+    "tags": ["format", "sistematika", "apa_7"]
   },
   {
     "id": "cit-004",
     "code": "[REF-004]",
-    "title": "Standard Test Method for Compressive Properties of Rigid Cellular Plastics",
-    "authors": "ASTM International",
+    "title": "Using the theory of planned behavior to identify key beliefs underlying pro-environmental behavior in high-school students",
+    "authors": "de Leeuw, A., Valois, P., Ajzen, I., & Schmidt, P.",
+    "year": 2015,
+    "source": "Journal of Environmental Psychology, 42, 128-138",
+    "tags": ["tpb", "perceived_behavioral_control", "high_school"]
+  },
+  {
+    "id": "cit-005",
+    "code": "[REF-005]",
+    "title": "Perencanaan pengembangan sekolah Adiwiyata di SMP N 7 Sijunjung dengan pengelolaan sampah menjadi ecobrick",
+    "authors": "Elvarisna, E., Sari, R., Asmendri, A., & Sari, M.",
+    "year": 2024,
+    "source": "De Journal (Dediaksi Education Journal), 5(2)",
+    "tags": ["adiwiyata", "ecobrick", "sekolah"]
+  },
+  {
+    "id": "cit-006",
+    "code": "[REF-006]",
+    "title": "Learning innovation: PBL-STEM 4H ecobrick material teaching for 7th graders to enhance ecoliteracy",
+    "authors": "Hapipah, H., Rubini, B., Permanasari, A., Kodama, Y., & Rachman, I.",
+    "year": 2024,
+    "source": "Jurnal Pendidikan Sains Indonesia, 12(4)",
+    "tags": ["stem", "ecoliteracy", "pbl"]
+  },
+  {
+    "id": "cit-007",
+    "code": "[REF-007]",
+    "title": "The importance of environmental knowledge for private and public sphere pro-environmental behavior: Modifying the value-belief-norm theory",
+    "authors": "Liobikienė, G., & Poškus, M. S.",
+    "year": 2019,
+    "source": "Sustainability, 11(12), 3324",
+    "tags": ["vbn", "environmental_knowledge", "personal_norms"]
+  },
+  {
+    "id": "cit-008",
+    "code": "[REF-008]",
+    "title": "The role of eco-school program (Adiwiyata) towards environmental literacy of high school students",
+    "authors": "Nurwidodo, N., Amin, M., Ibrohim, I., & Sueb, S.",
+    "year": 2020,
+    "source": "European Journal of Educational Research, 9(3), 1089-1103",
+    "tags": ["adiwiyata", "literacy", "environmental"]
+  },
+  {
+    "id": "cit-009",
+    "code": "[REF-009]",
+    "title": "PBL on waste management improved attitudes: Quasi-experimental study in junior high science",
+    "authors": "Susilawati, S., et al.",
+    "year": 2017,
+    "source": "Indonesian Journal of Science Education, 5(1)",
+    "tags": ["pbl", "n_gain", "attitude"]
+  },
+  {
+    "id": "cit-010",
+    "code": "[REF-010]",
+    "title": "Utilization of plastic waste with ecobricks: Education and training for junior high school students",
+    "authors": "Adriyani, R.",
+    "year": 2025,
+    "source": "Journal of Innovation and Applied Technology, 11(2)",
+    "tags": ["training", "junior_high", "practical"]
+  },
+  {
+    "id": "cit-011",
+    "code": "[REF-011]",
+    "title": "Aksi lingkungan: Praktek membuat ecobrick di sekolah dasar",
+    "authors": "Ardiansari, L., Arista, H., Rahma, A. A., & Swari, U. R.",
+    "year": 2024,
+    "source": "Lini Inovasi: Jurnal Pengabdian kepada Masyarakat, 9(4)",
+    "tags": ["elementary", "action", "waste_awareness"]
+  },
+  {
+    "id": "cit-012",
+    "code": "[REF-012]",
+    "title": "Edukasi ecobrick sebagai upaya meningkatkan kesadaran akan pentingnya lingkungan di sekolah dasar",
+    "authors": "Azzahra, N., & Hardiyanti, A.",
+    "year": 2024,
+    "source": "Jurnal Tekmulogi, 4(1)",
+    "tags": ["awareness", "elementary", "ecobrick"]
+  },
+  {
+    "id": "cit-013",
+    "code": "[REF-013]",
+    "title": "Penerapan literasi sains melalui pemanfaatan ecobrick di kelas V SD Negeri 1 Tanrutedong",
+    "authors": "Bachri, R. A. K., Muriati, S., & Nasiruddin, F. A. Z.",
+    "year": 2021,
+    "source": "Jurnal Klasikal, 3(2), 35-50",
+    "tags": ["science_literacy", "density", "pedagogy"]
+  },
+  {
+    "id": "cit-014",
+    "code": "[REF-014]",
+    "title": "Inovasi ecobrick sebagai upaya pengurangan sampah plastik",
+    "authors": "Budiman, B., et al.",
+    "year": 2024,
+    "source": "Jurnal Pengabdian Kolaborasi dan Inovasi IPTEKS, 2(5)",
+    "tags": ["circular_economy", "waste_reduction"]
+  },
+  {
+    "id": "cit-015",
+    "code": "[REF-015]",
+    "title": "Ecobrik sebagai media komunikasi lingkungan siswa SMAN 5 Bandar Lampung",
+    "authors": "Carolina, T., Suhardi, S., & Saputra, D.",
+    "year": 2024,
+    "source": "Jurnal Masyarakat Pengabdian, 3(2)",
+    "tags": ["communication", "peer_education", "empowerment"]
+  },
+  {
+    "id": "cit-016",
+    "code": "[REF-016]",
+    "title": "Edukasi pengelolaan sampah plastik melalui sosialisasi dan pembuatan ecobrick",
+    "authors": "Muthi’uddin, A., et al.",
+    "year": 2025,
+    "source": "Jurnal Ilmu Lingkungan dan Pendidikan (JILPI), 4(2)",
+    "tags": ["socialization", "hands_on"]
+  },
+  {
+    "id": "cit-017",
+    "code": "[REF-017]",
+    "title": "Penerapan model pembelajaran project based learning melalui kegiatan membuat ecobrick untuk meningkatkan kesadaran peduli lingkungan siswa",
+    "authors": "Sakti Jaya, A. W., Sahabuddin, E. S., & Irfan, M.",
+    "year": 2025,
+    "source": "Jurnal Dikdas / Jurnal Dedikasi Sains, 12(1)",
+    "tags": ["pbl", "87_percent_awareness", "environmental_care"]
+  },
+  {
+    "id": "cit-018",
+    "code": "[REF-018]",
+    "title": "Pelatihan ecobrick sebagai upaya peningkatan kesadaran pengelolaan sampah plastik pada anak sekolah dasar",
+    "authors": "Sihombing, C., et al.",
+    "year": 2026,
+    "source": "Hijm, 4(3)",
+    "tags": ["community_literacy", "furniture"]
+  },
+  {
+    "id": "cit-019",
+    "code": "[REF-019]",
+    "title": "Ecobrick workshop to strengthen plastic waste management literacy among primary and lower secondary students",
+    "authors": "Sofyan, S., et al.",
+    "year": 2025,
+    "source": "Sipakatau, 3(1)",
+    "tags": ["workshop", "polymers", "ldpe_hdpe"]
+  },
+  {
+    "id": "cit-020",
+    "code": "[REF-020]",
+    "title": "Pelatihan pengelolaan sampah plastik menjadi ecobrick sebagai media edukasi lingkungan berkelanjutan di SMPN 3 Tersono",
+    "authors": "Sunandar, M.",
+    "year": 2025,
+    "source": "Jurnal Pengabdian Sosial, 9(3)",
+    "tags": ["responsibility", "junior_high"]
+  },
+  {
+    "id": "cit-021",
+    "code": "[REF-021]",
+    "title": "Transforming plastic waste into ecobricks: Case study at MAS Al Hidayah",
+    "authors": "Sunaryo, D., et al.",
+    "year": 2025,
+    "source": "Fundamentum, 3(2)",
+    "tags": ["madrasah", "case_study"]
+  },
+  {
+    "id": "cit-022",
+    "code": "[REF-022]",
+    "title": "Sosialisasi dan pemanfaatan limbah plastik sebagai pagar ecobrick di SDN 13 Mataram",
+    "authors": "Wartiandani, E. P., et al.",
+    "year": 2025,
+    "source": "Dedikasi Cendekia, 2(2)",
+    "tags": ["mataram_local", "modular_fence"]
+  },
+  {
+    "id": "cit-023",
+    "code": "[REF-023]",
+    "title": "Ecobrick goes to school: Pelatihan mengolah sampah plastik berbasis sekolah Adiwiyata di SMP Negeri 25 Malang",
+    "authors": "Yani, N. L. S., et al.",
+    "year": 2024,
+    "source": "Jurnal Abdimas Bina Bangsa, 5(1)",
+    "tags": ["adiwiyata_mandiri", "action"]
+  },
+  {
+    "id": "cit-024",
+    "code": "[REF-024]",
+    "title": "Ecobrick implementation in school plastic waste management: Meta-analysis and synthesis report",
+    "authors": "Consensus NLP, Inc. & Elicit",
+    "year": 2026,
+    "source": "Consensus.app & Elicit AI Synthesis Repository",
+    "tags": ["meta_analysis", "consensus", "knowledge_action_gap"]
+  },
+  {
+    "id": "cit-025",
+    "code": "[REF-025]",
+    "title": "Ecoliteracy in utilizing plastic waste to ecobrick through project based learning on social studies learning",
+    "authors": "Rahmawati, A.",
+    "year": 2019,
+    "source": "International Journal of Pedagogy of Social Studies, 4(2)",
+    "tags": ["ecoliteracy", "pjbl", "classroom_action_research", "cycles"]
+  },
+  {
+    "id": "cit-026",
+    "code": "[REF-026]",
+    "title": "Ecobricks creation for preschool children: Sustainable Development Goals 2030",
+    "authors": "Nurjanah, N. E., Yetti, E., & Sumantri, M. S.",
+    "year": 2025,
+    "source": "IOP Conference Series: Earth and Environmental Science, 1438(1), 012037",
+    "tags": ["preschool", "sdgs_2030", "early_childhood", "environmental_care"]
+  },
+  {
+    "id": "cit-027",
+    "code": "[REF-027]",
+    "title": "Education of Waste Management Based on Zero Waste in Kendal District",
+    "authors": "Hidayati, N., Hajar, N., & Setiyanto, F.",
+    "year": 2021,
+    "source": "IOP Conference Series: Earth and Environmental Science, 755(1), 012077",
+    "tags": ["zero_waste", "76_percent_adoption", "3r_practices", "upcycling"]
+  },
+  {
+    "id": "cit-028",
+    "code": "[REF-028]",
+    "title": "Model Garden Literation Based Ecobrick",
+    "authors": "Suhendri, E., Saam, Z., Suprayogi, I., & Chairilsyah, D.",
+    "year": 2021,
+    "source": "Degres, 20(1), 126–133",
+    "tags": ["literacy_garden", "45_schools", "school_waste_solution"]
+  },
+  {
+    "id": "cit-029",
+    "code": "[REF-029]",
+    "title": "Ecobrick as a smart solution for utilizing plastic and cloth waste in Jakarta",
+    "authors": "Yusuf, Y., Sukmawati, W., & Riyanti, H. B.",
+    "year": 2020,
+    "source": "Journal of Community Services and Empowerment, 1(3), 114–120",
+    "tags": ["smart_solution", "plastic_cloth_waste", "urban_empowerment"]
+  },
+  {
+    "id": "cit-030",
+    "code": "[REF-030]",
+    "title": "Enhancing children's environmental cognition, affect, and behavior through project-based STEM learning toward the SDGs",
+    "authors": "Al-Barakat, A., Alali, R., Al-Hosan, A., et al.",
+    "year": 2026,
+    "source": "Frontiers in Psychology, 17, 1880850",
+    "tags": ["stem_pjbl", "sdgs", "cognition_affect_behavior", "experiential"]
+  },
+  {
+    "id": "cit-031",
+    "code": "[REF-031]",
+    "title": "Project-based Learning for Environmental Sustainability Action",
+    "authors": "Bramwell-Lalor, S., Kelly, K., Ferguson, T., et al.",
+    "year": 2020,
+    "source": "Southern African Journal of Environmental Education, 36(1), 10",
+    "tags": ["sustainability_competencies", "collaboration", "critical_thinking", "esd"]
+  },
+  {
+    "id": "cit-032",
+    "code": "[REF-032]",
+    "title": "Evaluating Three Dimensions of Environmental Knowledge and Their Impact on Behaviour",
+    "authors": "Braun, T., & Dierkes, P.",
+    "year": 2019,
+    "source": "Research in Science Education, 49, 1–19",
+    "tags": ["system_knowledge", "action_knowledge", "effectiveness_knowledge", "knowledge_action_gap"]
+  },
+  {
+    "id": "cit-033",
+    "code": "[REF-033]",
+    "title": "The project-based learning approach in environmental education",
+    "authors": "Genç, M.",
+    "year": 2015,
+    "source": "International Research in Geographical and Environmental Education, 24(2), 105–117",
+    "tags": ["pjbl_preservice", "attitudes", "problem_definition", "creativity"]
+  },
+  {
+    "id": "cit-034",
+    "code": "[REF-034]",
+    "title": "Roles of Environmental System Knowledge in Promoting University Students’ Environmental Attitudes and Pro-Environmental Behaviors",
+    "authors": "Janmaimool, P., & Khajohnmanee, S.",
+    "year": 2019,
+    "source": "Sustainability, 11(16), 4270",
+    "tags": ["system_knowledge", "direct_vs_indirect_peb", "personal_norms"]
+  },
+  {
+    "id": "cit-035",
+    "code": "[REF-035]",
+    "title": "Improvement impact of nudges incorporated in environmental education on students' environmental knowledge, attitudes, and behaviors",
+    "authors": "Kurokawa, H., Igei, K., Kitsuki, A., et al.",
     "year": 2022,
-    "source": "ASTM D1621-16 Standard, West Conshohocken, PA",
-    "tags": ["compression", "testing", "ASTM"]
+    "source": "Journal of Environmental Management, 325(Pt B), 116612",
+    "tags": ["nudges", "low_cost_vs_high_cost_behavior", "plastic_reduction"]
+  },
+  {
+    "id": "cit-036",
+    "code": "[REF-036]",
+    "title": "Using the theory of planned behavior to identify key beliefs underlying pro-environmental behavior in high-school students: Implications for educational interventions",
+    "authors": "de Leeuw, A., Valois, P., Ajzen, I., & Schmidt, P.",
+    "year": 2015,
+    "source": "Journal of Environmental Psychology, 42, 128–138",
+    "tags": ["tpb", "control_beliefs", "recycling_bins_at_home", "parental_encouragement"]
+  },
+  {
+    "id": "cit-037",
+    "code": "[REF-037]",
+    "title": "Environmental Education, Knowledge, and High School Students’ Intention toward Separation of Solid Waste on Campus",
+    "authors": "Liao, C., & Li, H.",
+    "year": 2019,
+    "source": "International Journal of Environmental Research and Public Health, 16(9), 1659",
+    "tags": ["extended_tpb", "562_students", "waste_separation_intention"]
+  },
+  {
+    "id": "cit-038",
+    "code": "[REF-038]",
+    "title": "Green Awareness in Action—How Energy Conservation Action Forces on Environmental Knowledge, Values and Behaviour in Adolescents’ School Life",
+    "authors": "Maurer, M., Koulouris, P., & Bogner, F.",
+    "year": 2020,
+    "source": "Sustainability, 12(3), 955",
+    "tags": ["gaia_project", "action_forces", "environmental_values", "utilitarian_decline"]
+  },
+  {
+    "id": "cit-039",
+    "code": "[REF-039]",
+    "title": "Utilizing project-based learning to increase sustainability attitudes among students",
+    "authors": "Perrault, E. K., & Albert, C. A.",
+    "year": 2017,
+    "source": "Applied Environmental Education & Communication, 17(2), 96–105",
+    "tags": ["pjbl_sustainability", "attitude_shift", "experiential"]
+  },
+  {
+    "id": "cit-040",
+    "code": "[REF-040]",
+    "title": "What Works for Whom? Investigating Adolescents’ Pro-Environmental Behaviors",
+    "authors": "Poškus, M. S.",
+    "year": 2020,
+    "source": "Sustainability, 12(18), 7313",
+    "tags": ["863_adolescents", "personality_clusters", "behavior_types"]
+  },
+  {
+    "id": "cit-041",
+    "code": "[REF-041]",
+    "title": "Educating for the future: How higher education in environmental management affects pro-environmental behaviour",
+    "authors": "Suárez‐Perales, I., Valero‐Gil, J., La Hiz, D. L. I., et al.",
+    "year": 2021,
+    "source": "Journal of Cleaner Production, 313, 128972",
+    "tags": ["knowledge_concern_willingness_pathway", "indirect_effects"]
+  },
+  {
+    "id": "cit-042",
+    "code": "[REF-042]",
+    "title": "Understanding Waste Management Behavior Among University Students in China: Environmental Knowledge, Personal Norms, and the Theory of Planned Behavior",
+    "authors": "Wu, L., Zhu, Y., & Zhai, J.",
+    "year": 2022,
+    "source": "Frontiers in Psychology, 12, 771723",
+    "tags": ["personal_norms", "subjective_norms", "tpb_mediation", "434_students"]
+  },
+  {
+    "id": "cit-043",
+    "code": "[REF-043]",
+    "title": "Pro-environmental behaviors through the lens of the theory of planned behavior: A scoping review",
+    "authors": "Yuriev, A., Dahmen, M., Paillé, P., Boiral, O., & Guillaumie, L.",
+    "year": 2020,
+    "source": "Resources, Conservation and Recycling, 155, 104660",
+    "tags": ["scoping_review", "126_studies", "tpb_synthesis", "contextual_factors"]
+  },
+  {
+    "id": "cit-044",
+    "code": "[REF-044]",
+    "title": "Greening due to environmental education? Environmental knowledge, attitudes, consumer behavior and everyday pro-environmental activities",
+    "authors": "Zsóka, Á., Szerényi, Z., Széchy, A., & Kocsis, T.",
+    "year": 2013,
+    "source": "Journal of Cleaner Production, 48, 126–138",
+    "tags": ["education_intensity", "consumer_behavior", "family_influence", "hungarian_students"]
   }
 ]

@@ -34,7 +34,7 @@ import { createSampleExperiments, SAMPLE_KTI } from './src/utils/sampleData';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const SESSION_COOKIE_NAME = 'evrl_workspace_session';
 const SESSION_SECRET =
   process.env.SESSION_SIGNING_SECRET || 'dev_secret_key_ecobrick_research_lab_2026';
@@ -46,17 +46,17 @@ app.use(cookieParser(SESSION_SECRET));
 
 // Security & Isolation helper
 function extractWorkspaceId(req: Request): string | null {
-  // 1. From signed cookie
+  // 1. From authorization / custom header (primary for client-side state sync)
+  const authHeader = req.headers['x-workspace-id'] as string;
+  if (authHeader && authHeader.startsWith('ws_')) {
+    return authHeader;
+  }
+
+  // 2. From signed or raw cookie
   const cookieVal = req.signedCookies?.[SESSION_COOKIE_NAME] || req.cookies?.[SESSION_COOKIE_NAME];
   if (cookieVal) {
     const verified = verifyWorkspaceToken(cookieVal, SESSION_SECRET);
     if (verified) return verified;
-  }
-
-  // 2. From authorization / custom header
-  const authHeader = req.headers['x-workspace-id'] as string;
-  if (authHeader && authHeader.startsWith('ws_')) {
-    return authHeader;
   }
 
   return null;
@@ -161,12 +161,28 @@ app.post('/api/workspace/save', requireWorkspace, (req, res) => {
   const incoming = req.body.state as WorkspaceState;
   const currentWsId = (req as any).workspaceId as string;
 
-  if (!incoming || incoming.metadata.id !== currentWsId) {
+  if (!incoming || !incoming.metadata || !incoming.metadata.id) {
     return res.status(400).json({ error: 'Mismatched or invalid workspace payload' });
   }
 
+  // If the client sent a valid workspace state with an active ID, ensure it is saved and the session matches
+  const targetId = incoming.metadata.id || currentWsId;
+  incoming.metadata.id = targetId;
+
   saveWorkspaceState(incoming);
-  res.json({ success: true, lastActivityAt: incoming.metadata.lastActivityAt });
+
+  // Update session cookie if needed
+  if (targetId !== currentWsId) {
+    const token = signWorkspaceToken(targetId, SESSION_SECRET);
+    res.cookie(SESSION_COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 3600 * 1000,
+    });
+  }
+
+  res.json({ success: true, lastActivityAt: incoming.metadata.lastActivityAt, workspaceId: targetId });
 });
 
 // Reset / Load Sample Preset (Pristine authentic KTI state)

@@ -1,0 +1,18 @@
+{
+  "id": "lit-pjbl-knowledge-action",
+  "title": "Project-Based Learning, Experiential Learning, and Bridging the Knowledge-Action Gap",
+  "type": "journal_synthesis",
+  "source": "Meta-Synthesis on Environmental PjBL & Action Mechanisms",
+  "authors": "Al-Barakat et al. (2026), Bramwell-Lalor et al. (2020), Braun & Dierkes (2019), Genç (2015), Janmaimool (2019), Kurokawa et al. (2022), Maurer et al. (2020), Perrault & Albert (2017), Suárez-Perales et al. (2021)",
+  "year": 2026,
+  "citation": "[REF-030], [REF-031], [REF-032], [REF-033], [REF-034], [REF-035], [REF-038], [REF-039], [REF-041]",
+  "abstract": "Kajian meta-sintesis mengenai efektivitas model Project-Based Learning (PjBL) dan experiential learning dalam mengatasi knowledge-action gap. Penelitian membuktikan bahwa pengajaran kognitif konvensional seringkali gagal memicu tindakan lingkungan langsung karena pengetahuan sistem berelasi lemah dengan aksi tanpa experiential bridging (Braun & Dierkes, 2019; Janmaimool, 2019). PjBL terstruktur terbukti mengungguli metode konvensional di ranah kognitif, afektif, dan psikomotorik (Al-Barakat et al., 2026), memfasilitasi 4 kompetensi kunci keberlanjutan (Bramwell-Lalor et al., 2020), dan memediasi perilaku melalui jalur kepedulian-kesediaan bertindak (Suárez-Perales et al., 2021).",
+  "keyFindings": [
+    "Al-Barakat et al. (2026): Proyek STEM/PjBL terstruktur unggul signifikan dibanding instruksi tradisional pada domain kognitif, afektif, dan habituasi harian.",
+    "Braun & Dierkes (2019): Pengetahuan sistem saja memiliki korelasi lemah dengan perilaku langsung, membuktikan pentingnya action-related dan effectiveness knowledge.",
+    "Bramwell-Lalor et al. (2020) & Genç (2015): PjBL menumbuhkan kolaborasi, berpikir kritis, kesadaran diri, dan partisipasi aktif memecahkan masalah lingkungan.",
+    "Kurokawa et al. (2022): Nudges mempermudah adopsi perilaku berbiaya rendah (refusal wet wipes), namun konsumsi plastik berbiaya tinggi menuntut intervensi komprehensif berkelanjutan.",
+    "Suárez-Perales et al. (2021): Pengetahuan lingkungan memicu aksi pro-lingkungan secara tidak langsung melalui jalur mediasi: Pengetahuan → Kepedulian Lingkungan → Kesediaan Bertindak (Willingness to Act)."
+  ],
+  "keywords": ["pjbl", "knowledge_action_gap", "experiential_learning", "stem", "esd", "nudges", "willingness_to_act"]
+}

@@ -182,17 +182,37 @@ export function queryResearchCorpus(
 
   // 2. Evaluate Literature Journals
   for (const lit of corpus.literature) {
-    const text = `${lit.title} ${lit.abstract} ${lit.keyFindings.join(' ')}`;
+    const text = `${lit.title} ${lit.abstract} ${(lit.keyFindings || []).join(' ')}`;
     const sc = scoreText(text, lit.keywords || []);
+    const refCodes = lit.citation?.match(/\[REF-\d{3}\]/g) || ['[REF-001]'];
     snippets.push({
       id: lit.id,
       sourceType: 'JOURNAL',
       title: lit.title,
       section: lit.source,
-      content: `${lit.abstract} Temuan kunci: ${lit.keyFindings.join('; ')}`,
-      citationCode: lit.citation?.match(/\[REF-\d{3}\]/)?.[0] || '[REF-001]',
+      content: `${lit.abstract} Temuan kunci: ${(lit.keyFindings || []).join('; ')}`,
+      citationCode: refCodes.join(', '),
       relevanceScore: sc + 2,
     });
+  }
+
+  // 2.1 Evaluate Structured Citations Catalog
+  if (corpus.citations && corpus.citations.length > 0) {
+    for (const cit of corpus.citations) {
+      const text = `${cit.title} ${cit.authors} ${cit.source} ${(cit.tags || []).join(' ')}`;
+      const sc = scoreText(text, cit.tags || []);
+      if (sc > 1) {
+        snippets.push({
+          id: cit.id,
+          sourceType: 'CITATION',
+          title: cit.title,
+          section: `${cit.authors} (${cit.year}) - ${cit.source}`,
+          content: `${cit.title}. ${cit.authors} (${cit.year}). Sumber: ${cit.source}. Kata Kunci: ${(cit.tags || []).join(', ')}`,
+          citationCode: cit.code,
+          relevanceScore: sc + 1,
+        });
+      }
+    }
   }
 
   // 3. Evaluate Methodology
@@ -236,8 +256,9 @@ export function queryResearchCorpus(
 
   for (const s of selectedSnippets) {
     contextPrompt += `[${s.sourceType}] ${s.citationCode} ${s.title}:\n${s.content}\n\n`;
-    if (s.citationCode.startsWith('[REF-')) {
-      matchedCitations.push(s.citationCode);
+    const matches = s.citationCode.match(/\[REF-\d{3}\]/g);
+    if (matches) {
+      matchedCitations.push(...matches);
     }
   }
 
