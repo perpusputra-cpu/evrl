@@ -11,6 +11,7 @@ import {
   getAiProviderInfo,
   handleLabAiQuery,
 } from './server/aiProvider';
+import { requireTurnstile, validateTurnstileToken } from './server/turnstile';
 import {
   createNewWorkspace,
   generateSecureWorkspaceId,
@@ -305,8 +306,8 @@ app.delete('/api/research/notes/:id', requireWorkspace, (req, res) => {
   res.json({ success: true });
 });
 
-// LAB AI Chat (Standard JSON Endpoint)
-app.post('/api/lab-ai', requireWorkspace, async (req, res) => {
+// LAB AI Chat (Standard JSON Endpoint - Protected by Turnstile)
+app.post('/api/lab-ai', requireWorkspace, requireTurnstile('lab-ai'), async (req, res) => {
   const state = (req as any).workspaceState as WorkspaceState;
   const { message, conversationId, activeExpId } = req.body;
 
@@ -392,8 +393,8 @@ app.get('/api/research/corpus', (req, res) => {
   }
 });
 
-// Jury Simulator Endpoints
-app.post('/api/jury/start', requireWorkspace, async (req, res) => {
+// Jury Simulator Endpoints (Protected by Turnstile)
+app.post('/api/jury/start', requireWorkspace, requireTurnstile('jury-start'), async (req, res) => {
   const state = (req as any).workspaceState as WorkspaceState;
   const { persona = 'methodology', difficulty = 'COMPETITIVE', totalRounds = 4 } = req.body;
 
@@ -429,7 +430,7 @@ app.post('/api/jury/start', requireWorkspace, async (req, res) => {
   }
 });
 
-app.post('/api/jury/respond', requireWorkspace, async (req, res) => {
+app.post('/api/jury/respond', requireWorkspace, requireTurnstile('jury-respond'), async (req, res) => {
   const state = (req as any).workspaceState as WorkspaceState;
   const { sessionId, questionId, answer } = req.body;
 
@@ -493,7 +494,28 @@ app.post('/api/jury/respond', requireWorkspace, async (req, res) => {
   }
 });
 
-// ReCAPTCHA Verification Endpoint
+// Cloudflare Turnstile Verification Endpoint
+app.post('/api/turnstile/verify', async (req, res) => {
+  const token =
+    (req.headers['x-turnstile-token'] as string) ||
+    req.body?.token ||
+    req.body?.turnstileToken ||
+    req.body?.turnstile_token;
+
+  const forwarded = req.headers['x-forwarded-for'];
+  const remoteIp =
+    typeof forwarded === 'string'
+      ? forwarded.split(',')[0].trim()
+      : req.socket.remoteAddress;
+
+  const outcome = await validateTurnstileToken(token, remoteIp);
+  if (!outcome.success) {
+    return res.status(403).json(outcome);
+  }
+  res.json(outcome);
+});
+
+// ReCAPTCHA Verification Endpoint (Legacy fallback)
 app.post('/api/recaptcha/verify', async (req, res) => {
   const { token } = req.body;
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -557,6 +579,14 @@ async function startServer() {
   }
 }
 
-startServer().catch((err) => {
-  console.error('[EVRL] Unhandled startServer rejection:', err);
-});
+export { app };
+export default app;
+
+// In Vercel serverless environment, the app is exported and invoked by Vercel functions,
+// so app.listen is only called in non-Vercel container / standalone dev environments.
+if (!process.env.VERCEL) {
+  startServer().catch((err) => {
+    console.error('[EVRL] Unhandled startServer rejection:', err);
+  });
+}
+

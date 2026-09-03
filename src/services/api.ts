@@ -45,7 +45,11 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.error || `HTTP ${response.status} Error`);
+    const err = new Error(errorData.error || `HTTP ${response.status} Error`);
+    (err as any).status = response.status;
+    (err as any).code = errorData.code;
+    (err as any).details = errorData.details;
+    throw err;
   }
 
   return response.json();
@@ -153,24 +157,36 @@ export const api = {
   async sendLabAiMessage(
     message: string,
     conversationId?: string | null,
-    activeExpId?: string | null
+    activeExpId?: string | null,
+    turnstileToken?: string | null
   ): Promise<{ success: boolean; message: ChatMessage; conversation: any }> {
+    const headers: Record<string, string> = {};
+    if (turnstileToken) {
+      headers['x-turnstile-token'] = turnstileToken;
+    }
     return request<{ success: boolean; message: ChatMessage; conversation: any }>('/api/lab-ai', {
       method: 'POST',
-      body: JSON.stringify({ message, conversationId, activeExpId }),
+      headers,
+      body: JSON.stringify({ message, conversationId, activeExpId, turnstileToken }),
     });
   },
 
   async startJurySession(
     persona: JuryPersonaId,
     difficulty: JuryDifficulty,
-    totalRounds: number = 4
+    totalRounds: number = 4,
+    turnstileToken?: string | null
   ): Promise<{ success: boolean; session: JurySession; question: JuryQuestion }> {
+    const headers: Record<string, string> = {};
+    if (turnstileToken) {
+      headers['x-turnstile-token'] = turnstileToken;
+    }
     return request<{ success: boolean; session: JurySession; question: JuryQuestion }>(
       '/api/jury/start',
       {
         method: 'POST',
-        body: JSON.stringify({ persona, difficulty, totalRounds }),
+        headers,
+        body: JSON.stringify({ persona, difficulty, totalRounds, turnstileToken }),
       }
     );
   },
@@ -178,7 +194,8 @@ export const api = {
   async submitJuryAnswer(
     sessionId: string,
     questionId: string,
-    answer: string
+    answer: string,
+    turnstileToken?: string | null
   ): Promise<{
     success: boolean;
     evaluation: JuryResponseEvaluation;
@@ -187,6 +204,10 @@ export const api = {
     finalReport?: JuryReport;
     session: JurySession;
   }> {
+    const headers: Record<string, string> = {};
+    if (turnstileToken) {
+      headers['x-turnstile-token'] = turnstileToken;
+    }
     return request<{
       success: boolean;
       evaluation: JuryResponseEvaluation;
@@ -196,7 +217,18 @@ export const api = {
       session: JurySession;
     }>('/api/jury/respond', {
       method: 'POST',
-      body: JSON.stringify({ sessionId, questionId, answer }),
+      headers,
+      body: JSON.stringify({ sessionId, questionId, answer, turnstileToken }),
+    });
+  },
+
+  async verifyTurnstile(token: string): Promise<{ success: boolean; bypassed?: boolean; 'error-codes'?: string[] }> {
+    return request<{ success: boolean; bypassed?: boolean; 'error-codes'?: string[] }>('/api/turnstile/verify', {
+      method: 'POST',
+      headers: {
+        'x-turnstile-token': token,
+      },
+      body: JSON.stringify({ token }),
     });
   },
 };

@@ -20,10 +20,11 @@ import {
 } from 'lucide-react';
 import { Conversation, ChatMessage, Experiment, KTIStructure, ReferenceItem } from '../../types';
 import { MarkdownRenderer } from '../common/MarkdownRenderer';
+import { TurnstileWidget, TurnstileWidgetRef } from '../common/TurnstileWidget';
 
 interface LabAiChatProps {
   conversation?: Conversation;
-  onSendMessage: (text: string) => Promise<void>;
+  onSendMessage: (text: string, turnstileToken?: string) => Promise<void>;
   onClearConversation?: () => void;
   isSending: boolean;
   activeExperiment: Experiment;
@@ -84,6 +85,9 @@ export const LabAiChat: React.FC<LabAiChatProps> = ({
     isExternalAiConnected: true,
   });
 
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileWidgetRef>(null);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -126,11 +130,18 @@ export const LabAiChat: React.FC<LabAiChatProps> = ({
   const handleSend = async (textToSend?: string) => {
     const text = textToSend || inputText;
     if (!text.trim() || isSending) return;
+    const token = turnstileToken || turnstileRef.current?.getResponse() || undefined;
     setInputText('');
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
-    await onSendMessage(text.trim());
+    try {
+      await onSendMessage(text.trim(), token);
+    } finally {
+      // Reset Turnstile token so each expensive AI prompt has a fresh verified token
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
+    }
   };
 
   const handleCopy = (text: string, id: string) => {
@@ -377,6 +388,18 @@ export const LabAiChat: React.FC<LabAiChatProps> = ({
             ))}
           </div>
         )}
+
+        {/* Cloudflare Turnstile Verification Widget (Managed Mode) */}
+        <div className="pt-0.5 pb-1">
+          <TurnstileWidget
+            ref={turnstileRef}
+            action="lab-ai"
+            theme="dark"
+            size="normal"
+            onSuccess={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken(null)}
+          />
+        </div>
 
         {/* Text Area & Submit */}
         <form

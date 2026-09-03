@@ -294,7 +294,7 @@ export default function App() {
     workspace?.conversations.find((c) => c.id === workspace.activeConversationId) ||
     workspace?.conversations[0];
 
-  const handleSendAiMessage = async (messageText: string) => {
+  const handleSendAiMessage = async (messageText: string, turnstileToken?: string) => {
     if (!workspace) return;
     setIsAiSending(true);
 
@@ -338,7 +338,8 @@ export default function App() {
       const res = await api.sendLabAiMessage(
         messageText,
         workspace.activeConversationId,
-        workspace.activeExperimentId
+        workspace.activeExperimentId,
+        turnstileToken
       );
 
       if (res.success && res.message) {
@@ -370,13 +371,22 @@ export default function App() {
       }
     } catch (err: any) {
       console.error('Error in AI message handler:', err);
+      const isTurnstileErr =
+        err?.status === 403 ||
+        err?.code === 'TURNSTILE_REQUIRED' ||
+        err?.code === 'TURNSTILE_FORBIDDEN';
+
+      const errorText = isTurnstileErr
+        ? '🛡️ Verifikasi Cloudflare Turnstile diperlukan atau telah kedaluwarsa. Silakan centang kotak verifikasi keamanan sebelum mengirim pesan.'
+        : '⚠️ Maaf, layanan AI sedang mengalami kendala. Data laboratorium dan naskah KTI Anda tetap aman. Silakan ulangi pertanyaan Anda.';
+
       // Append error message to UI
       updateWorkspaceState((prev) => {
         let convs = [...prev.conversations];
         const errorMsg: ChatMessage = {
           id: `msg_err_${Date.now()}`,
           role: 'assistant',
-          content: '⚠️ Maaf, layanan AI sedang mengalami kendala. Data laboratorium dan naskah KTI Anda tetap aman. Silakan ulangi pertanyaan Anda.',
+          content: errorText,
           createdAt: new Date().toISOString(),
           inferenceType: 'SCIENTIFIC_INFERENCE',
         };
@@ -425,11 +435,12 @@ export default function App() {
   const handleStartJurySession = async (
     persona: JuryPersonaId,
     difficulty: JuryDifficulty,
-    rounds: number
+    rounds: number,
+    turnstileToken?: string
   ) => {
     setIsJuryProcessing(true);
     try {
-      const res = await api.startJurySession(persona, difficulty, rounds);
+      const res = await api.startJurySession(persona, difficulty, rounds, turnstileToken);
       if (res.success && res.session) {
         updateWorkspaceState((prev) => ({
           ...prev,
@@ -437,8 +448,11 @@ export default function App() {
           activeJurySessionId: res.session.id,
         }));
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error starting jury session:', err);
+      if (err?.status === 403) {
+        alert('🛡️ Verifikasi Cloudflare Turnstile diperlukan atau gagal. Silakan verifikasi tantangan keamanan.');
+      }
     } finally {
       setIsJuryProcessing(false);
     }
@@ -447,19 +461,23 @@ export default function App() {
   const handleSubmitJuryAnswer = async (
     sessionId: string,
     questionId: string,
-    answer: string
+    answer: string,
+    turnstileToken?: string
   ) => {
     setIsJuryProcessing(true);
     try {
-      const res = await api.submitJuryAnswer(sessionId, questionId, answer);
+      const res = await api.submitJuryAnswer(sessionId, questionId, answer, turnstileToken);
       if (res.success && res.session) {
         updateWorkspaceState((prev) => ({
           ...prev,
           jurySessions: prev.jurySessions.map((s) => (s.id === sessionId ? res.session : s)),
         }));
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error submitting jury defense answer:', err);
+      if (err?.status === 403) {
+        alert('🛡️ Verifikasi Cloudflare Turnstile diperlukan atau telah kedaluwarsa. Silakan verifikasi ulang.');
+      }
     } finally {
       setIsJuryProcessing(false);
     }

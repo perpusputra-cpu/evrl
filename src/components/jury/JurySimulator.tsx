@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Award,
   ShieldAlert,
@@ -27,12 +27,23 @@ import {
 } from '../../types';
 import { JURY_PERSONAS } from '../../utils/sampleData';
 import { MarkdownRenderer } from '../common/MarkdownRenderer';
+import { TurnstileWidget, TurnstileWidgetRef } from '../common/TurnstileWidget';
 
 interface JurySimulatorProps {
   workspace: WorkspaceState;
   activeSession?: JurySession;
-  onStartSession: (persona: JuryPersonaId, difficulty: JuryDifficulty, rounds: number) => Promise<void>;
-  onSubmitAnswer: (sessionId: string, questionId: string, answer: string) => Promise<void>;
+  onStartSession: (
+    persona: JuryPersonaId,
+    difficulty: JuryDifficulty,
+    rounds: number,
+    turnstileToken?: string
+  ) => Promise<void>;
+  onSubmitAnswer: (
+    sessionId: string,
+    questionId: string,
+    answer: string,
+    turnstileToken?: string
+  ) => Promise<void>;
   isProcessing: boolean;
   onGoToLab: () => void;
 }
@@ -49,9 +60,13 @@ export const JurySimulator: React.FC<JurySimulatorProps> = ({
   const [selectedPersona, setSelectedPersona] = useState<JuryPersonaId>('methodology');
   const [selectedDifficulty, setSelectedDifficulty] = useState<JuryDifficulty>('COMPETITIVE');
   const [roundsCount, setRoundsCount] = useState<number>(4);
+  const [startTurnstileToken, setStartTurnstileToken] = useState<string | null>(null);
+  const startTurnstileRef = useRef<TurnstileWidgetRef>(null);
 
   // Answering State
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
+  const [respondTurnstileToken, setRespondTurnstileToken] = useState<string | null>(null);
+  const respondTurnstileRef = useRef<TurnstileWidgetRef>(null);
 
   const currentQuestion: JuryQuestion | undefined =
     activeSession?.questions[activeSession.questions.length - 1];
@@ -59,14 +74,26 @@ export const JurySimulator: React.FC<JurySimulatorProps> = ({
     activeSession?.evaluations[activeSession.evaluations.length - 1];
 
   const handleStart = async () => {
-    await onStartSession(selectedPersona, selectedDifficulty, roundsCount);
+    const token = startTurnstileToken || startTurnstileRef.current?.getResponse() || undefined;
+    try {
+      await onStartSession(selectedPersona, selectedDifficulty, roundsCount, token);
+    } finally {
+      startTurnstileRef.current?.reset();
+      setStartTurnstileToken(null);
+    }
   };
 
   const handleSubmit = async () => {
     if (!activeSession || !currentQuestion || !currentAnswer.trim() || isProcessing) return;
     const ans = currentAnswer.trim();
+    const token = respondTurnstileToken || respondTurnstileRef.current?.getResponse() || undefined;
     setCurrentAnswer('');
-    await onSubmitAnswer(activeSession.id, currentQuestion.id, ans);
+    try {
+      await onSubmitAnswer(activeSession.id, currentQuestion.id, ans, token);
+    } finally {
+      respondTurnstileRef.current?.reset();
+      setRespondTurnstileToken(null);
+    }
   };
 
   // 1. SETUP SCREEN (If no active session or session completed)
@@ -275,6 +302,18 @@ export const JurySimulator: React.FC<JurySimulatorProps> = ({
             </div>
           </div>
 
+          {/* Cloudflare Turnstile Verification (Managed Mode) */}
+          <div className="pt-2 pb-1">
+            <TurnstileWidget
+              ref={startTurnstileRef}
+              action="jury-start"
+              theme="dark"
+              size="normal"
+              onSuccess={(tok) => setStartTurnstileToken(tok)}
+              onExpire={() => setStartTurnstileToken(null)}
+            />
+          </div>
+
           {/* Start CTA Button */}
           <div className="pt-3 border-t border-[#202020] flex justify-end">
             <button
@@ -416,6 +455,18 @@ export const JurySimulator: React.FC<JurySimulatorProps> = ({
           placeholder="Tuliskan argumen pertahanan ilmiah Anda secara sistematis, terstruktur, dan berbasis bukti data laboratorium..."
           className="w-full bg-[#141414] border border-[#262626] rounded-xl p-3 text-xs text-white font-sans leading-relaxed focus:ring-1 focus:ring-emerald-500 placeholder:text-stone-500"
         />
+
+        {/* Cloudflare Turnstile Verification (Managed Mode) */}
+        <div className="pt-1">
+          <TurnstileWidget
+            ref={respondTurnstileRef}
+            action="jury-respond"
+            theme="dark"
+            size="normal"
+            onSuccess={(tok) => setRespondTurnstileToken(tok)}
+            onExpire={() => setRespondTurnstileToken(null)}
+          />
+        </div>
 
         <div className="flex items-center justify-between pt-2">
           <button
