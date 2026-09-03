@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import express, { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { createServer as createViteServer } from 'vite';
 import {
   evaluateJuryAnswer,
   generateFinalJuryReport,
@@ -30,7 +29,7 @@ import {
   ResearchNote,
   WorkspaceState,
 } from './src/types';
-import { createSampleExperiments, SAMPLE_KTI } from './src/utils/sampleData';
+import { createInitialWorkspaceState, createSampleExperiments, SAMPLE_KTI } from './src/utils/sampleData';
 
 dotenv.config();
 
@@ -38,7 +37,9 @@ const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const SESSION_COOKIE_NAME = 'evrl_workspace_session';
 const SESSION_SECRET =
-  process.env.SESSION_SIGNING_SECRET || 'dev_secret_key_ecobrick_research_lab_2026';
+  process.env.SESSION_SIGNING_SECRET ||
+  process.env.SESSION_SECRET ||
+  'dev_secret_key_ecobrick_research_lab_2026';
 
 // Middlewares
 app.use(express.json({ limit: '10mb' }));
@@ -47,47 +48,66 @@ app.use(cookieParser(SESSION_SECRET));
 
 // Security & Isolation helper
 function extractWorkspaceId(req: Request): string | null {
-  // 1. From authorization / custom header (primary for client-side state sync)
-  const authHeader = req.headers['x-workspace-id'] as string;
-  if (authHeader && authHeader.startsWith('ws_')) {
-    return authHeader;
-  }
+  try {
+    // 1. From authorization / custom header (primary for client-side state sync)
+    const authHeader = req.headers['x-workspace-id'] as string;
+    if (authHeader && typeof authHeader === 'string' && authHeader.startsWith('ws_')) {
+      return authHeader;
+    }
 
-  // 2. From signed or raw cookie
-  const cookieVal = req.signedCookies?.[SESSION_COOKIE_NAME] || req.cookies?.[SESSION_COOKIE_NAME];
-  if (cookieVal) {
-    const verified = verifyWorkspaceToken(cookieVal, SESSION_SECRET);
-    if (verified) return verified;
+    // 2. From signed or raw cookie
+    const cookieVal =
+      req.signedCookies?.[SESSION_COOKIE_NAME] ||
+      req.cookies?.[SESSION_COOKIE_NAME];
+
+    if (cookieVal && typeof cookieVal === 'string') {
+      const verified = verifyWorkspaceToken(cookieVal, SESSION_SECRET);
+      if (verified) return verified;
+    }
+  } catch (err) {
+    console.warn('[EVRL Auth] Error extracting workspace ID:', (err as any)?.message);
   }
 
   return null;
 }
 
 function requireWorkspace(req: Request, res: Response, next: NextFunction) {
-  const wsId = extractWorkspaceId(req);
-  if (!wsId) {
-    // If not found, create new on the fly to prevent disruption
-    const newWs = createNewWorkspace();
-    const token = signWorkspaceToken(newWs.metadata.id, SESSION_SECRET);
-    res.cookie(SESSION_COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 3600 * 1000,
-    });
-    (req as any).workspaceId = newWs.metadata.id;
-    (req as any).workspaceState = newWs;
-    return next();
-  }
+  try {
+    const wsId = extractWorkspaceId(req);
+    if (!wsId) {
+      // If not found, create new on the fly to prevent disruption
+      const newWs = createNewWorkspace();
+      const token = signWorkspaceToken(newWs.metadata.id, SESSION_SECRET);
+      try {
+        res.cookie(SESSION_COOKIE_NAME, token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 7 * 24 * 3600 * 1000,
+        });
+      } catch {
+        // Ignore cookie write failure in restricted environments
+      }
+      (req as any).workspaceId = newWs.metadata.id;
+      (req as any).workspaceState = newWs;
+      return next();
+    }
 
-  let state = getWorkspaceState(wsId);
-  if (!state) {
-    state = createNewWorkspace(wsId);
-  }
+    let state = getWorkspaceState(wsId);
+    if (!state) {
+      state = createNewWorkspace(wsId);
+    }
 
-  (req as any).workspaceId = wsId;
-  (req as any).workspaceState = state;
-  next();
+    (req as any).workspaceId = wsId;
+    (req as any).workspaceState = state;
+    next();
+  } catch (err) {
+    console.error('[EVRL Workspace] Error in requireWorkspace middleware:', (err as any)?.message);
+    const fallbackWs = createInitialWorkspaceState(generateSecureWorkspaceId());
+    (req as any).workspaceId = fallbackWs.metadata.id;
+    (req as any).workspaceState = fallbackWs;
+    next();
+  }
 }
 
 // ----------------------------------------------------
@@ -109,32 +129,59 @@ app.get('/api/ai/provider-status', (req, res) => {
   });
 });
 
-// Workspace Init
+// Workspace Init (Do NOT require Turnstile for internal session init)
 app.post('/api/workspace/init', (req, res) => {
-  let wsId = extractWorkspaceId(req);
-  let state: WorkspaceState;
+  try {
+    let wsId = extractWorkspaceId(req);
+    let state: WorkspaceState | null = null;
 
-  if (wsId) {
-    const existing = getWorkspaceState(wsId);
-    state = existing || createNewWorkspace(wsId);
-  } else {
-    state = createNewWorkspace();
-    wsId = state.metadata.id;
+    if (wsId) {
+      try {
+        state = getWorkspaceState(wsId);
+      } catch (err) {
+        console.warn(`[EVRL Workspace Init] Could not restore workspace ${wsId}:`, (err as any)?.message);
+        state = null;
+      }
+    }
+
+    if (!state) {
+      state = createNewWorkspace(wsId || undefined);
+      wsId = state.metadata.id;
+    }
+
+    const token = signWorkspaceToken(wsId, SESSION_SECRET);
+    try {
+      res.cookie(SESSION_COOKIE_NAME, token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 3600 * 1000,
+      });
+    } catch (cookieErr) {
+      console.warn('[EVRL Workspace Init] Cookie set warning:', (cookieErr as any)?.message);
+    }
+
+    return res.json({
+      success: true,
+      workspaceId: wsId,
+      state,
+    });
+  } catch (error) {
+    console.error('[EVRL Workspace Init Critical]', (error as any)?.message || error);
+    try {
+      const fallbackState = createInitialWorkspaceState(generateSecureWorkspaceId());
+      return res.json({
+        success: true,
+        workspaceId: fallbackState.metadata.id,
+        state: fallbackState,
+      });
+    } catch (criticalErr) {
+      return res.status(500).json({
+        error: 'Terjadi kesalahan internal pada server laboratorium.',
+        code: 'WORKSPACE_INIT_FAILED',
+      });
+    }
   }
-
-  const token = signWorkspaceToken(wsId, SESSION_SECRET);
-  res.cookie(SESSION_COOKIE_NAME, token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 7 * 24 * 3600 * 1000,
-  });
-
-  res.json({
-    success: true,
-    workspaceId: wsId,
-    state,
-  });
 });
 
 // Workspace Heartbeat (extends 7-day inactivity)
@@ -557,6 +604,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 async function startServer() {
   try {
     if (process.env.NODE_ENV !== 'production') {
+      const { createServer: createViteServer } = await import('vite');
       const vite = await createViteServer({
         server: { middlewareMode: true },
         appType: 'spa',

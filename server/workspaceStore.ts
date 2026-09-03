@@ -1,22 +1,32 @@
 import crypto from 'crypto';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { WorkspaceState } from '../src/types';
 import { createInitialWorkspaceState } from '../src/utils/sampleData';
 
-const WORKSPACE_DIR = path.join(process.cwd(), '.data', 'workspaces');
+// Determine writable directory for workspace storage:
+// On Vercel / AWS Lambda, process.cwd() is read-only (/var/task). Only /tmp (os.tmpdir()) is writable.
+function getWritableDirectory(): string {
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), 'evrl_workspaces');
+  }
+  return path.join(process.cwd(), '.data', 'workspaces');
+}
+
+const WORKSPACE_DIR = getWritableDirectory();
 const RETENTION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days of inactivity
 
 // In-memory cache for speed + durability in files
 const memoryStore = new Map<string, WorkspaceState>();
 
-// Ensure directory exists
+// Safe directory initialization
 try {
   if (!fs.existsSync(WORKSPACE_DIR)) {
     fs.mkdirSync(WORKSPACE_DIR, { recursive: true });
   }
 } catch {
-  // Ignore filesystem errors in strict environments
+  // Ignore filesystem errors in strict or read-only environments; memoryStore remains functional
 }
 
 export function generateSecureWorkspaceId(): string {
@@ -24,26 +34,45 @@ export function generateSecureWorkspaceId(): string {
   return `ws_${randomBytes}`;
 }
 
-export function signWorkspaceToken(workspaceId: string, secret: string): string {
-  const hmac = crypto.createHmac('sha256', secret);
+export function signWorkspaceToken(workspaceId: string, secret?: string): string {
+  const signingKey =
+    secret ||
+    process.env.SESSION_SIGNING_SECRET ||
+    process.env.SESSION_SECRET ||
+    'dev_secret_key_ecobrick_research_lab_2026';
+  const hmac = crypto.createHmac('sha256', signingKey);
   hmac.update(workspaceId);
   const signature = hmac.digest('hex');
   return `${workspaceId}.${signature}`;
 }
 
-export function verifyWorkspaceToken(token: string, secret: string): string | null {
+export function verifyWorkspaceToken(token: string, secret?: string): string | null {
   if (!token || typeof token !== 'string') return null;
   const parts = token.split('.');
   if (parts.length !== 2) return null;
   const [workspaceId, signature] = parts;
-  if (!workspaceId.startsWith('ws_')) return null;
+  if (!workspaceId || !workspaceId.startsWith('ws_') || !signature) return null;
 
-  const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(workspaceId);
-  const expectedSignature = hmac.digest('hex');
+  try {
+    const signingKey =
+      secret ||
+      process.env.SESSION_SIGNING_SECRET ||
+      process.env.SESSION_SECRET ||
+      'dev_secret_key_ecobrick_research_lab_2026';
+    const hmac = crypto.createHmac('sha256', signingKey);
+    hmac.update(workspaceId);
+    const expectedSignature = hmac.digest('hex');
 
-  if (crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
-    return workspaceId;
+    const sigBuf = Buffer.from(signature, 'utf-8');
+    const expBuf = Buffer.from(expectedSignature, 'utf-8');
+
+    // timingSafeEqual throws RangeError if buffer lengths differ
+    if (sigBuf.length === expBuf.length && crypto.timingSafeEqual(sigBuf, expBuf)) {
+      return workspaceId;
+    }
+  } catch {
+    // Malformed token or timing comparison error - safely treat as invalid
+    return null;
   }
   return null;
 }
@@ -55,41 +84,56 @@ export function getWorkspaceFilePath(workspaceId: string): string {
 }
 
 export function getWorkspaceState(workspaceId: string): WorkspaceState | null {
-  // 1. Check in-memory
-  let state = memoryStore.get(workspaceId);
-
-  // 2. Check filesystem if not in memory
-  if (!state) {
-    const filePath = getWorkspaceFilePath(workspaceId);
-    if (fs.existsSync(filePath)) {
-      try {
-        const raw = fs.readFileSync(filePath, 'utf-8');
-        state = JSON.parse(raw) as WorkspaceState;
-        memoryStore.set(workspaceId, state);
-      } catch (e) {
-        console.error(`Failed to read workspace file ${filePath}:`, e);
-      }
-    }
-  }
-
-  if (!state) return null;
-
-  // Check version - if older version (version !== 2), reset to fresh authentic KTI
-  if (!state.metadata.version || state.metadata.version < 2) {
-    state = createInitialWorkspaceState(workspaceId);
-    saveWorkspaceState(state);
-    return state;
-  }
-
-  // 3. Inactivity check (7 days)
-  const lastActive = new Date(state.metadata.lastActivityAt).getTime();
-  const now = Date.now();
-  if (now - lastActive > RETENTION_MS) {
-    deleteWorkspace(workspaceId);
+  if (!workspaceId || typeof workspaceId !== 'string' || !workspaceId.startsWith('ws_')) {
     return null;
   }
 
-  return state;
+  try {
+    // 1. Check in-memory
+    let state = memoryStore.get(workspaceId);
+
+    // 2. Check filesystem if not in memory
+    if (!state) {
+      try {
+        const filePath = getWorkspaceFilePath(workspaceId);
+        if (fs.existsSync(filePath)) {
+          const raw = fs.readFileSync(filePath, 'utf-8');
+          const parsed = JSON.parse(raw) as WorkspaceState;
+          if (parsed && parsed.metadata && parsed.metadata.id) {
+            state = parsed;
+            memoryStore.set(workspaceId, state);
+          }
+        }
+      } catch (fileErr) {
+        // Warning only, do not throw
+        console.warn(`[EVRL Storage] Could not read workspace file for ${workspaceId}`);
+      }
+    }
+
+    if (!state || !state.metadata) return null;
+
+    // Check version - if older version (version !== 2), reset to fresh authentic KTI
+    if (!state.metadata.version || state.metadata.version < 2) {
+      state = createInitialWorkspaceState(workspaceId);
+      saveWorkspaceState(state);
+      return state;
+    }
+
+    // 3. Inactivity check (7 days)
+    const lastActive = state.metadata.lastActivityAt
+      ? new Date(state.metadata.lastActivityAt).getTime()
+      : 0;
+    const now = Date.now();
+    if (lastActive && now - lastActive > RETENTION_MS) {
+      deleteWorkspace(workspaceId);
+      return null;
+    }
+
+    return state;
+  } catch (err) {
+    console.error(`[EVRL Storage] Error in getWorkspaceState for ${workspaceId}:`, (err as any)?.message);
+    return null;
+  }
 }
 
 export function resetAllWorkspaces(): void {
@@ -109,38 +153,54 @@ export function resetAllWorkspaces(): void {
 }
 
 export function saveWorkspaceState(state: WorkspaceState): void {
-  const now = new Date();
-  state.metadata.lastActivityAt = now.toISOString();
-  state.metadata.expiresAt = new Date(now.getTime() + RETENTION_MS).toISOString();
-
-  // Save to memory
-  memoryStore.set(state.metadata.id, state);
-
-  // Save to filesystem asynchronously
   try {
-    const filePath = getWorkspaceFilePath(state.metadata.id);
-    fs.writeFileSync(filePath, JSON.stringify(state, null, 2), 'utf-8');
-  } catch (e) {
-    console.error('Failed to write workspace file:', e);
+    if (!state || !state.metadata || !state.metadata.id) return;
+
+    const now = new Date();
+    state.metadata.lastActivityAt = now.toISOString();
+    state.metadata.expiresAt = new Date(now.getTime() + RETENTION_MS).toISOString();
+
+    // Save to memory
+    memoryStore.set(state.metadata.id, state);
+
+    // Save to filesystem if writable
+    try {
+      if (!fs.existsSync(WORKSPACE_DIR)) {
+        fs.mkdirSync(WORKSPACE_DIR, { recursive: true });
+      }
+      const filePath = getWorkspaceFilePath(state.metadata.id);
+      fs.writeFileSync(filePath, JSON.stringify(state, null, 2), 'utf-8');
+    } catch {
+      // Non-fatal on serverless; in-memory store retains state for invocation
+    }
+  } catch (err) {
+    console.error('[EVRL Storage] Error in saveWorkspaceState:', (err as any)?.message);
   }
 }
 
 export function createNewWorkspace(customId?: string): WorkspaceState {
-  const workspaceId = customId || generateSecureWorkspaceId();
-  const state = createInitialWorkspaceState(workspaceId);
-  saveWorkspaceState(state);
-  return state;
+  try {
+    const workspaceId =
+      customId && customId.startsWith('ws_') ? customId : generateSecureWorkspaceId();
+    const state = createInitialWorkspaceState(workspaceId);
+    saveWorkspaceState(state);
+    return state;
+  } catch (err) {
+    console.error('[EVRL Storage] Error in createNewWorkspace:', (err as any)?.message);
+    const fallbackId = generateSecureWorkspaceId();
+    return createInitialWorkspaceState(fallbackId);
+  }
 }
 
 export function deleteWorkspace(workspaceId: string): void {
-  memoryStore.delete(workspaceId);
   try {
+    memoryStore.delete(workspaceId);
     const filePath = getWorkspaceFilePath(workspaceId);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
-  } catch (e) {
-    console.error(`Failed to delete workspace file for ${workspaceId}:`, e);
+  } catch {
+    // Non-fatal
   }
 }
 
@@ -150,10 +210,16 @@ export function cleanupExpiredWorkspaces(): number {
 
   // Check memory
   for (const [id, state] of memoryStore.entries()) {
-    const lastActive = new Date(state.metadata.lastActivityAt).getTime();
-    if (now - lastActive > RETENTION_MS) {
-      deleteWorkspace(id);
-      cleanedCount++;
+    try {
+      const lastActive = state.metadata?.lastActivityAt
+        ? new Date(state.metadata.lastActivityAt).getTime()
+        : 0;
+      if (lastActive && now - lastActive > RETENTION_MS) {
+        deleteWorkspace(id);
+        cleanedCount++;
+      }
+    } catch {
+      // Ignore invalid entry
     }
   }
 
@@ -186,7 +252,17 @@ export function cleanupExpiredWorkspaces(): number {
   return cleanedCount;
 }
 
-// Run cleanup every 6 hours
-setInterval(() => {
-  cleanupExpiredWorkspaces();
-}, 6 * 60 * 60 * 1000);
+// Run periodic cleanup only in persistent Node processes (not on Vercel or AWS Lambda)
+if (!process.env.VERCEL && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  const cleanupTimer = setInterval(() => {
+    try {
+      cleanupExpiredWorkspaces();
+    } catch (e) {
+      console.error('[EVRL Storage] Cleanup error:', e);
+    }
+  }, 6 * 60 * 60 * 1000);
+
+  if (cleanupTimer.unref) {
+    cleanupTimer.unref();
+  }
+}
