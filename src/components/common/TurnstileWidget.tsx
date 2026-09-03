@@ -39,6 +39,7 @@ export interface TurnstileWidgetRef {
 }
 
 export interface TurnstileWidgetProps {
+  siteKey?: string;
   action?: string;
   onSuccess: (token: string) => void;
   onError?: (errorCode?: string) => void;
@@ -50,10 +51,12 @@ export interface TurnstileWidgetProps {
 
 const SCRIPT_ID = 'cf-turnstile-script';
 const SCRIPT_URL = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+export const DEFAULT_SITE_KEY = '0x4AAAAAAEmAgjECAyxbcVQX';
 
 export const TurnstileWidget = forwardRef<TurnstileWidgetRef, TurnstileWidgetProps>(
   (
     {
+      siteKey: propSiteKey,
       action = 'generic-action',
       onSuccess,
       onError,
@@ -69,8 +72,11 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetRef, TurnstileWidgetPro
     const [status, setStatus] = useState<'loading' | 'ready' | 'verified' | 'expired' | 'error' | 'no-key'>('loading');
     const [lastToken, setLastToken] = useState<string | null>(null);
 
-    // Turnstile site key strictly read from public environment variable
-    const siteKey = (import.meta as any).env?.VITE_TURNSTILE_SITE_KEY || '';
+    // Turnstile site key prioritizing prop or env, defaulting to project site key
+    const siteKey =
+      propSiteKey ||
+      (import.meta as any).env?.VITE_TURNSTILE_SITE_KEY ||
+      DEFAULT_SITE_KEY;
 
     // Expose reset and getResponse to parent
     useImperativeHandle(
@@ -229,6 +235,9 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetRef, TurnstileWidgetPro
 
     return (
       <div className={`turnstile-wrapper flex flex-col space-y-1.5 ${className}`}>
+        {/* Canonical hidden input for cf-turnstile-response */}
+        <input type="hidden" name="cf-turnstile-response" value={lastToken || ''} />
+
         {/* The Cloudflare Turnstile Managed Widget Container */}
         <div ref={containerRef} className="min-h-[65px] flex items-center" />
 

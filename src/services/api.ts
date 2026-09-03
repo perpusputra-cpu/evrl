@@ -167,7 +167,13 @@ export const api = {
     return request<{ success: boolean; message: ChatMessage; conversation: any }>('/api/lab-ai', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ message, conversationId, activeExpId, turnstileToken }),
+      body: JSON.stringify({
+        message,
+        conversationId,
+        activeExpId,
+        turnstileToken,
+        'cf-turnstile-response': turnstileToken,
+      }),
     });
   },
 
@@ -186,7 +192,13 @@ export const api = {
       {
         method: 'POST',
         headers,
-        body: JSON.stringify({ persona, difficulty, totalRounds, turnstileToken }),
+        body: JSON.stringify({
+          persona,
+          difficulty,
+          totalRounds,
+          turnstileToken,
+          'cf-turnstile-response': turnstileToken,
+        }),
       }
     );
   },
@@ -218,7 +230,13 @@ export const api = {
     }>('/api/jury/respond', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ sessionId, questionId, answer, turnstileToken }),
+      body: JSON.stringify({
+        sessionId,
+        questionId,
+        answer,
+        turnstileToken,
+        'cf-turnstile-response': turnstileToken,
+      }),
     });
   },
 
@@ -228,7 +246,10 @@ export const api = {
       headers: {
         'x-turnstile-token': token,
       },
-      body: JSON.stringify({ token }),
+      body: JSON.stringify({
+        token,
+        'cf-turnstile-response': token,
+      }),
     });
   },
 };
